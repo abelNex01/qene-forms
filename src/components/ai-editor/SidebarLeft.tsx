@@ -52,39 +52,6 @@ export function SidebarLeft({
       
       {/* Field Types Section */}
       <div className="p-3 sm:p-4 relative">
-        {/* AI Generator Section */}
-        <div className={`mb-6 ${isCollapsible ? 'hidden' : ''}`}>
-           <div className="flex items-center gap-2 mb-2">
-             <ChevronRight className="w-3 h-3 text-cyan-400" />
-             <span className="text-mono text-[11px] text-cyan-400 font-bold">
-               <DecryptedText text="AI_GENERATOR" animateOn="view" speed={60} maxIterations={8} />
-             </span>
-           </div>
-           
-           <div className="space-y-2">
-             <textarea
-               value={prompt}
-               onChange={(e) => setPrompt(e.target.value)}
-               placeholder="e.g., 'User registration with email, password, and address' or 'Checkout form with credit card payment'..."
-               className="w-full h-20 bg-muted/30 border border-border text-xs p-2 focus:outline-none focus:border-cyan-400 text-foreground resize-none rounded-sm placeholder:text-muted-foreground/50"
-             />
-             <button
-                onClick={handleGenerate}
-                disabled={isGenerating || !prompt.trim()}
-                className="w-full flex items-center justify-center gap-2 bg-cyan-400/10 hover:bg-cyan-400/20 border border-cyan-400/50 text-cyan-400 py-1.5 px-2 transition-colors disabled:opacity-50 disabled:cursor-not-allowed group"
-             >
-                {isGenerating ? (
-                  <span className="text-[10px] font-mono animate-pulse">GENERATING...</span>
-                ) : (
-                  <>
-                    <span className="text-[10px] font-bold font-mono">GENERATE</span>
-                    <div className="w-1.5 h-1.5 bg-cyan-400 rounded-full animate-pulse" />
-                  </>
-                )}
-             </button>
-           </div>
-        </div>
-
         {/* Section header with code comment styling - hidden on collapsible since we have header */}
         <div className={`mb-4 ${isCollapsible ? 'hidden' : ''}`}>
           <div className="flex items-center gap-2 mb-1">
@@ -99,13 +66,18 @@ export function SidebarLeft({
         </div>
         
         {/* Field type list with line numbers */}
-        <div className="space-y-0.5">
+        <div className="space-y-0.5 mb-8">
           {FIELD_TYPES.map(({ type, label, icon: Icon }, index) => (
             <button
               key={type}
               onClick={() => addField(type)}
+              draggable
+              onDragStart={(e) => {
+                e.dataTransfer.setData('text/plain', type);
+                e.dataTransfer.effectAllowed = 'copy';
+              }}
               type="button"
-              className="w-full flex items-center gap-2 sm:gap-3 px-2 py-2.5 sm:py-2 text-left hover:bg-muted/50 transition-all group border-l-2 border-transparent hover:border-primary touch-manipulation hover:translate-x-1 active:scale-95"
+              className="w-full flex items-center gap-2 sm:gap-3 px-2 py-2.5 sm:py-2 text-left hover:bg-muted/50 transition-all group border-l-2 border-transparent hover:border-primary touch-manipulation hover:translate-x-1 active:scale-95 cursor-grab active:cursor-grabbing"
             >
               {/* Line number */}
               <span className="text-mono text-[10px] text-muted-foreground w-4 text-right opacity-50 group-hover:opacity-100">
@@ -123,6 +95,39 @@ export function SidebarLeft({
               </span>
             </button>
           ))}
+        </div>
+
+        {/* AI Generator Section */}
+        <div className={`mt-10 pt-6 border-t border-border/50 ${isCollapsible ? 'hidden' : ''}`}>
+           <div className="flex items-center gap-2 mb-2">
+             <ChevronRight className="w-3 h-3 text-cyan-400" />
+             <span className="text-mono text-[11px] text-cyan-400 font-bold">
+               <DecryptedText text="AI_GENERATOR" animateOn="view" speed={60} maxIterations={8} />
+             </span>
+           </div>
+           
+           <div className="space-y-2">
+             <textarea
+               value={prompt}
+               onChange={(e) => setPrompt(e.target.value)}
+               placeholder="e.g., 'User registration with email, password, and address'..."
+               className="w-full h-20 bg-muted/30 border border-border text-xs p-2 focus:outline-none focus:border-cyan-400 text-foreground resize-none rounded-sm placeholder:text-muted-foreground/50"
+             />
+             <button
+                onClick={handleGenerate}
+                disabled={isGenerating || !prompt.trim()}
+                className="w-full flex items-center justify-center gap-2 bg-cyan-400/10 hover:bg-cyan-400/20 border border-cyan-400/50 text-cyan-400 py-1.5 px-2 transition-colors disabled:opacity-50 disabled:cursor-not-allowed group"
+             >
+                {isGenerating ? (
+                  <span className="text-[10px] font-mono animate-pulse">GENERATING...</span>
+                ) : (
+                  <>
+                    <span className="text-[10px] font-bold font-mono">GENERATE</span>
+                    <div className="w-1.5 h-1.5 bg-cyan-400 rounded-full animate-pulse" />
+                  </>
+                )}
+             </button>
+           </div>
         </div>
       </div>
       

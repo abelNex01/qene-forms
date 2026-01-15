@@ -53,13 +53,13 @@ export function Header({
         
         <div className="max-w-full mx-auto px-2 sm:px-4 h-full flex items-center justify-between relative">
 
-          <a href="/" className="flex items-center gap-3 select-none cursor-pointer">
-             <div className="w-8 h-8 flex items-center justify-center bg-primary text-primary-foreground">
-                <PenTool className="w-4 h-4" />
-             </div>
-             <span className="text-sm font-bold tracking-tight text-foreground font-mono leading-none hidden sm:block">
-               <DecryptedText text="AI.FORM.BUILDER" animateOn="view" speed={50} maxIterations={10} />
-             </span>
+          <a href="/" className="flex items-center select-none cursor-pointer">
+                <img 
+                  src="/qenelogo.svg" 
+                  alt="Qene Forms Logo" 
+                  className="h-8 w-auto max-w-none"
+                 
+                />
           </a>
           
 

@@ -182,6 +182,7 @@ export default function AIEditor() {
                         deleteField={deleteField}
                         isProcessing={isProcessing}
                         isCollapsible={isCollapsibleMode}
+                        addField={addField}
                     />
                 </div>
 
@@ -227,7 +228,7 @@ export default function AIEditor() {
                         <span className="hidden md:inline">HISTORY: <span className="text-cyan-400">{historyIndex + 1}/{history.length}</span></span>
                     </div>
                     <div className="flex items-center gap-2 sm:gap-6">
-                        <span className="hidden sm:inline">AI.FORM.BUILDER</span>
+                        <span className="hidden sm:inline">QENE.FORMS</span>
                         <span>v2.4.0</span>
                     </div>
                 </div>

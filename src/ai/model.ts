@@ -8,13 +8,28 @@ export const loadModel = async (): Promise<use.UniversalSentenceEncoder> => {
   if (model) return model;
   if (modelLoadingPromise) return modelLoadingPromise;
 
+  console.log('[AI Model] Starting model load...');
+  
+  // Optimize TensorFlow.js backend
+  try {
+    await tf.setBackend('webgl');
+    await tf.ready();
+    console.log('[AI Model] Using WebGL backend');
+  } catch (e) {
+    console.warn('[AI Model] WebGL backend failed, falling back to default');
+  }
+
   modelLoadingPromise = use.load({
     modelUrl: undefined, // Use default hosted model
     vocabUrl: undefined, // Use default
   }).then((loadedModel: use.UniversalSentenceEncoder) => {
     model = loadedModel;
-    console.log('AI Model Loaded');
+    console.log('[AI Model] Universal Sentence Encoder loaded successfully');
     return model;
+  }).catch((err) => {
+    console.error('[AI Model] Failed to load model:', err);
+    modelLoadingPromise = null; // Allow retry
+    throw err;
   });
 
   return modelLoadingPromise;

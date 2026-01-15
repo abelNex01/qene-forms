@@ -88,6 +88,22 @@ export function Footer() {
                           </div>
                       </div>
                   )}
+
+                  {link.url && (
+                      <div className="mt-6 pt-4 border-t border-white/5">
+                          <a 
+                              href={link.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="group inline-flex items-center gap-2 text-xs font-bold text-primary hover:text-primary/80 transition-all font-mono"
+                          >
+                              <span className="border-b border-primary/30 group-hover:border-primary pb-0.5 uppercase tracking-wider">
+                                  {link.urlLabel || "VISIT_RESOURCE"}
+                              </span>
+                              <Zap className="w-3 h-3 animate-pulse" />
+                          </a>
+                      </div>
+                  )}
               </div>
           )
       });
@@ -97,70 +113,74 @@ export function Footer() {
   const footerLinksData = {
     platform: [
       { 
-        label: "Visual Studio", 
-        desc: "Advanced drag-and-drop builder for rapid UI composition.",
-        detailedDesc: "The core of AI Form Builder is our Visual Studio. It provides a pixel-perfect design environment where you can drag, drop, and configure components with real-time feedback. It's not just a builder; it's a full-featured IDE for visual development.",
+        label: "Qene Studio", 
+        desc: "Advanced visual editor for rapid form composition.",
+        detailedDesc: "The Qene Studio is our professional-grade visual environment for form construction. It provides a distraction-free, high-performance workspace where you can orchestrate complex field interactions and data structures with ease.",
         features: ["Drag & Drop", "Real-time Preview", "Component Isolation", "Props Editor"],
-        stats: { "Engine": "React 19", "Latency": "<16ms", "Components": "50+" },
-        codeSnippet: "ai-builder studio --open"
+        stats: { "Engine": "V4-Core", "Latency": "<16ms", "Components": "50+" },
+        url: "/dashboard",
+        urlLabel: "LAUNCH_STUDIO",
+        codeSnippet: "qene-forms --studio"
       },
       { 
-        label: "AI Assistant", 
-        desc: "Intelligent code generation and layout suggestions.",
-        detailedDesc: "Leverage state-of-the-art AI to generate complex layouts, refactor components, and optimize your code structure. Our AI assistant understands your design intent and suggests improvements in real-time.",
-        features: ["Context-Aware Suggestions", "Auto-Refactoring", "Layout Generation", "Style Optimization"],
-        stats: { "Model": "GPT-4o", "Response": "<1s", "Accuracy": "98%" },
-        codeSnippet: "ai.generate('dashboard layout with sidebar')"
+        label: "About Application", 
+        desc: "The mission and technology behind the Qene ecosystem.",
+        detailedDesc: "Qene Forms is a state-of-the-art form generation engine that leverages browser-based AI to transform the way developers build user interfaces. Our philosophy is rooted in 'Code as a First Class Citizen', ensuring every form generated is clean, accessible, and ready for production.",
+        features: ["AI-Native Engine", "Browser-Local Privacy", "Universal Framework Support", "Type-Safe Architecture"],
+        stats: { "Version": "v1.2.0-STABLE", "Status": "ONLINE", "Core": "OPEN_SOURCE" },
+        url: "https://qeneforms.com",
+        urlLabel: "OFFICIAL_WEBSITE",
+        codeSnippet: "qene --info"
       },
       { 
         label: "Universal Export", 
         desc: "Export to React, Vue, Svelte, Angular, and more.",
-        detailedDesc: "Don't get locked in. AI Form Builder's Universal Export engine transpiles your visual designs into clean, idiomatic code for any major framework. Use Tailwind, CSS Modules, or Styled Components - the choice is yours.",
+        detailedDesc: "Don't get locked in. Qene Forms' Universal Export engine transpiles your visual designs into clean, idiomatic code for any major framework. Use Tailwind, CSS Modules, or Styled Components - the choice is yours.",
         features: ["React/Next.js", "Vue/Nuxt", "Svelte/Kit", "Angular", "HTML/CSS"],
         stats: { "Frameworks": "8+", "Code Quality": "A+", "Lock-in": "0%" },
-        codeSnippet: "ai-builder export --target=vue --style=tailwind"
+        codeSnippet: "import { exportForm } from 'qene-forms'"
       },
       { 
         label: "Component Library", 
-        desc: "Pre-built, accessible components powered by shadcn/ui.",
-        detailedDesc: "Access a vast library of pre-built components, fully accessible and customizable. Based on the popular shadcn/ui library, these components ensure your application looks professional and functions perfectly out of the box.",
+        desc: "Pre-built, accessible form components.",
+        detailedDesc: "Access a specialized library of form inputs, selects, date pickers, and file uploads. Fully accessible and styled, ready to drop into any application.",
         features: ["WAI-ARIA Compliant", "Dark Mode Ready", "Themable", "Responsive"],
         stats: { "Components": "100+", "Accessibility": "WCAG 2.1", "Updates": "Weekly" },
-        codeSnippet: "import { Button } from '@ai-builder/ui';"
+        codeSnippet: "import { Button } from 'qene-forms/ui';"
       },
     ],
     resources: [
       { 
         label: "Documentation", 
         desc: "Comprehensive guides and API references.",
-        detailedDesc: "Everything you need to master AI Form Builder. From quick start guides to deep dives into the plugin architecture, our documentation is built for developers by developers.",
+        detailedDesc: "Everything you need to master Qene Forms. From quick start guides to deep dives into the plugin architecture, our documentation is built for developers by developers.",
         features: ["Interactive Examples", "Video Tutorials", "API Reference", "Architecture Guide"],
         stats: { "Pages": "400+", "Examples": "1M+", "Search": "Instant" },
         codeSnippet: "docs.search('custom components')"
       },
       { 
         label: "Templates", 
-        desc: "Start faster with production-ready templates.",
-        detailedDesc: "Browse our marketplace of professionally designed templates. Dashboards, landing pages, authentication flows, and e-commerce layouts - all ready to customize and deploy.",
+        desc: "Start faster with production-ready form templates.",
+        detailedDesc: "Browse our collection of common form patterns. Registration flows, checkout pages, surveys, and multi-step wizards - all pre-configured and ready to deploy.",
         features: ["Dashboard Kits", "SaaS Starters", "Marketing Pages", "App UI"],
         stats: { "Categories": "12", "Free": "50+", "Premium": "100+" },
-        codeSnippet: "ai-builder init --template=saas-dashboard"
+        codeSnippet: "npx create-qene-app --template=saas"
       },
       { 
         label: "Changelog", 
         desc: "Latest features, fixes, and improvements.",
-        detailedDesc: "Stay up to date with the rapid evolution of AI Form Builder. We release weekly updates with performance improvements, new components, and feature enhancements based on community feedback.",
+        detailedDesc: "Stay up to date with the rapid evolution of Qene Forms. We release weekly updates with performance improvements, new components, and feature enhancements based on community feedback.",
         features: ["Weekly Updates", "LTS Versions", "Beta Access", "Roadmap"],
         stats: { "Version": "2.4.0", "Release": "Stable", "Frequency": "Weekly" },
-        codeSnippet: "npm list @ai-builder/core"
+        codeSnippet: "npm list qene-forms"
       },
       { 
         label: "Community", 
-        desc: "Join thousands of developers building with AI Form Builder.",
+        desc: "Join thousands of developers building with Qene Forms.",
         detailedDesc: "Connect with other developers, share your creations, and get help from the community. Our Discord server and GitHub discussions are vibrant hubs of innovation.",
         features: ["Discord Server", "GitHub Discussions", "Community Showcases", "Plugin Registry"],
         stats: { "Members": "15k+", "Online": "1.2k", "Topics": "Dev/Design" },
-        codeSnippet: "open https://discord.gg/ai-builder"
+        codeSnippet: "open https://discord.gg/qene-forms"
       },
     ],
     legal: [
@@ -175,7 +195,7 @@ export function Footer() {
       { 
         label: "Terms of Service", 
         desc: "Usage agreements.",
-        detailedDesc: "Clear, fair terms for using AI Form Builder. We support open source and commercial usage with plans tailored to freelancers, startups, and enterprises.",
+        detailedDesc: "Clear, fair terms for using Qene Forms. We support open source and commercial usage with plans tailored to freelancers, startups, and enterprises.",
         features: ["Fair Usage", "Commercial Rights", "SLA", "Support Tiers"],
         stats: { "License": "MIT/Proprietary", "Jurisdiction": "US", "Version": "2.1" },
         codeSnippet: "terms.agree()"
@@ -208,16 +228,11 @@ export function Footer() {
           {/* Brand Column */}
           <div className="lg:col-span-4 space-y-6">
             <div className="flex items-center gap-3">
-              <div className="w-8 h-8 flex items-center justify-center bg-primary text-primary-foreground neo-border">
-                <PenTool className="w-4 h-4" />
-              </div>
-              <span className="text-lg font-bold tracking-tight font-mono">
-                <DecryptedText text="AI_FORM_BUILDER" animateOn="view" speed={50} maxIterations={10} />
-              </span>
+                <img src="/qenelogo.svg" alt="Qene Forms Logo" className="w-64 object-contain" />
             </div>
             <p className="text-muted-foreground text-sm leading-relaxed max-w-sm">
               <DecryptedText 
-                text="The advanced AI-powered UI editor for generating production-ready code across any framework. Build faster, validate instantly, export anywhere." 
+                text="The advanced AI-powered engine for generating production-ready forms. Build faster, validate instantly, export anywhere." 
                 animateOn="view" 
                 speed={20} 
                 maxIterations={6} 
@@ -321,7 +336,7 @@ export function Footer() {
         <div className="border-t border-border pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex flex-col md:flex-row items-center gap-4 md:gap-8">
              <p className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider">
-               © {new Date().getFullYear()} AI Form Builder. All Rights Reserved.
+               © {new Date().getFullYear()} Qene Forms. All Rights Reserved.
              </p>
              <div className="flex gap-6">
                 {footerLinksData.legal.map(link => (

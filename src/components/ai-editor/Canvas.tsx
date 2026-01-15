@@ -91,6 +91,7 @@ interface CanvasProps {
     deleteField: (id: string) => void;
     isProcessing?: boolean;
     isCollapsible?: boolean;
+    addField: (type: string) => void;
 }
 
 export function Canvas({
@@ -107,8 +108,31 @@ export function Canvas({
     cloneField,
     deleteField,
     isProcessing = false,
-    isCollapsible = false
+    isCollapsible = false,
+    addField
 }: CanvasProps) {
+  const [isDraggingOver, setIsDraggingOver] = React.useState(false);
+
+  const handleDragOver = (e: React.DragEvent) => {
+    e.preventDefault();
+    e.dataTransfer.dropEffect = 'copy';
+    if (!isDraggingOver) setIsDraggingOver(true);
+  };
+
+  const handleDragLeave = (e: React.DragEvent) => {
+    e.preventDefault();
+    setIsDraggingOver(false);
+  };
+
+  const handleDrop = (e: React.DragEvent) => {
+    e.preventDefault();
+    setIsDraggingOver(false);
+    const type = e.dataTransfer.getData('text/plain');
+    if (type) {
+      addField(type);
+    }
+  };
+
   return (
     <div className="flex-1 overflow-y-auto bg-background relative">
       {/* Full grid pattern background */}
@@ -187,7 +211,19 @@ export function Canvas({
                 </div>
 
                 {/* Fields area */}
-                <div className="space-y-3">
+                <div 
+                  className={`space-y-3 min-h-[400px] transition-colors relative ${isDraggingOver ? 'bg-primary/5' : ''}`}
+                  onDragOver={handleDragOver}
+                  onDragLeave={handleDragLeave}
+                  onDrop={handleDrop}
+                >
+                  {isDraggingOver && (
+                    <div className="absolute inset-0 border-2 border-dashed border-primary/50 pointer-events-none z-20 flex items-center justify-center">
+                      <div className="bg-primary/10 backdrop-blur-sm px-4 py-2 text-primary text-mono text-xs font-bold">
+                        DROP TO ADD FIELD
+                      </div>
+                    </div>
+                  )}
                   {fields.length === 0 ? (
                     <motion.div 
                       initial={{ opacity: 0 }}

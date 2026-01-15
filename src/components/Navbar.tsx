@@ -8,21 +8,16 @@ import {
   Layout,
   FileCode,
   Box,
-  Github
+  Heart
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import DecryptedText from "@/components/ui/DecryptedText";
 import { useLocation } from "wouter";
-
-// Simple NPM Icon Component
-const NpmIcon = ({ className }: { className?: string }) => (
-  <svg viewBox="0 0 780 250" className={className} fill="currentColor" aria-hidden="true">
-    <path d="M240,250h100v-50h100v0v50h100v0v-150h-100v0v50h-100v0v-50h-100v0z M0,250h240v-250h-240v0z M540,250h240v-250h-240v0z M640,200v0v-150h50v0v150z" />
-  </svg>
-);
+import Donation from "./Donation";
 
 export function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isDonationOpen, setIsDonationOpen] = useState(false);
   const [location, setLocation] = useLocation();
   const [activeLink, setActiveLink] = useState("");
 
@@ -63,51 +58,45 @@ export function Navbar() {
     <>
     <header className="fixed top-2 left-0 right-0 z-50 flex justify-center pointer-events-none px-4">
       <div 
-        className="pointer-events-auto flex items-center justify-between gap-8 bg-card/90 backdrop-blur-xl border border-border px-8 py-2 neo-border w-full max-w-2xl"
+        className="pointer-events-auto flex items-center justify-between gap-8 bg-card/90 backdrop-blur-xl border border-border px-4 py-2 neo-border w-full max-w-2xl"
       >
           {/* Logo Section */}
           <a href="/#hero" onClick={(e) => handleScroll(e, "/#hero")} className="flex items-center gap-3 select-none cursor-pointer">
-             <div className="w-8 h-8 flex items-center justify-center bg-primary text-primary-foreground">
-                <PenTool className="w-4 h-4" />
-             </div>
-             <span className="text-sm font-bold tracking-tight text-foreground font-mono leading-none hidden sm:block">
-               <DecryptedText text="AI_FORM_BUILDER" animateOn="view" speed={50} maxIterations={10} />
-             </span>
-          </a>
+          
+                <img src="/favicon.png" alt="Qene Forms Logo" className="w-8 h-8 object-contain" />
+          
 
-          {/* Center: GitHub & NPM Icons (Desktop) */}
-          <div className="hidden md:flex items-center gap-4">
-              <a
-                href="#"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-1.5 text-muted-foreground hover:text-foreground transition-all hover:scale-110"
-                aria-label="GitHub"
-              >
-                <Github className="w-4 h-4" />
-              </a>
-              <a
-                href="#"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-1.5 text-muted-foreground hover:text-foreground transition-all hover:scale-110"
-                aria-label="NPM"
-              >
-                <NpmIcon className="w-8 h-4" /> 
-              </a>
-          </div>
+          </a>
 
           {/* Right Controls */}
           <div className="flex items-center gap-4">
-             {/* Launch Studio Button (Desktop) */}
+             {/* Support the Project Button (Desktop) */}
             <div className="hidden md:flex items-center border-l border-border pl-4">
-               <Button 
-                  onClick={() => setLocation("/dashboard")}
-                  variant="outline"
-                  className="font-mono text-xs font-bold border-primary/50 text-primary hover:bg-primary/10 transition-all"
-               >
-                  LAUNCH_STUDIO
-               </Button>
+             <Button
+  onClick={() => setIsDonationOpen(true)}
+  className="
+    relative overflow-hidden
+    font-mono text-xs font-bold tracking-widest
+    bg-[#C2E812] text-black
+    border border-lime-300/40
+    px-4 py-2
+    gap-2
+    shadow-[0_0_12px_rgba(194,232,18,0.6)]
+    hover:shadow-[0_0_20px_rgba(194,232,18,0.9)]
+    hover:bg-lime-400
+    transition-all duration-300
+    before:absolute before:inset-0
+    before:bg-[linear-gradient(120deg,transparent,rgba(255,255,255,0.18),transparent)]
+    before:translate-x-[-100%]
+    hover:before:translate-x-[100%]
+    before:transition-transform before:duration-700
+  "
+>
+  <Heart className="w-3 h-3 fill-black" />
+  SUPPORT_US
+</Button>
+
+
             </div>
 
             {/* Mobile Toggle */}
@@ -148,35 +137,16 @@ export function Navbar() {
                     <button 
                         onClick={() => {
                             setIsMobileMenuOpen(false);
-                            setLocation("/dashboard");
+                            setIsDonationOpen(true);
                         }} 
-                        className="text-2xl font-mono font-bold text-primary border-b border-border pb-4"
+                        className="text-2xl font-mono font-bold text-primary border-b border-border pb-4 flex items-center justify-center gap-2"
                     >
-                        LAUNCH STUDIO
+                        <Heart className="w-6 h-6 fill-primary" />
+                        SUPPORT THE PROJECT
                     </button>
                 </div>
 
                 <div className="mt-auto flex flex-col items-center gap-6 pt-12">
-                     <div className="flex gap-6">
-                        <a
-                          href="#"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex flex-col items-center gap-2 text-muted-foreground hover:text-primary"
-                        >
-                          <Github className="w-6 h-6" />
-                          <span className="text-[10px] font-mono">GITHUB</span>
-                        </a>
-                        <a
-                          href="#"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex flex-col items-center gap-2 text-muted-foreground hover:text-primary"
-                        >
-                          <NpmIcon className="w-12 h-6" />
-                          <span className="text-[10px] font-mono">NPM</span>
-                        </a>
-                     </div>
                      <div className="flex flex-col items-center gap-2 text-muted-foreground">
                          <Monitor className="w-6 h-6" />
                          <span className="text-[10px] font-mono">STABLE RELEASE</span>
@@ -185,6 +155,8 @@ export function Navbar() {
             </motion.div>
         )}
     </AnimatePresence>
+
+    <Donation isOpen={isDonationOpen} onClose={() => setIsDonationOpen(false)} />
     </>
   );
 }

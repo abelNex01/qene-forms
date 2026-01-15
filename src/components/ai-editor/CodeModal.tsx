@@ -74,20 +74,22 @@ export function CodeModal({
             
             <div className="fixed inset-0 flex items-center justify-center p-4">
                 <Dialog.Panel 
-                    as={motion.div}
-                    initial={{ opacity: 0, scale: 0.9, y: 20 }}
-                    animate={{ opacity: 1, scale: 1, y: 0 }}
-                    exit={{ opacity: 0, scale: 0.9, y: 20 }}
-                    transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-                    className={`bg-[#1a1a2e] border border-[#30305a] shadow-2xl overflow-hidden flex flex-col ${
+                    className={`w-full ${
                         isMaximized 
-                            ? 'w-full h-full max-w-none max-h-none' 
-                            : 'w-full max-w-4xl max-h-[85vh]'
+                            ? 'h-full max-w-none max-h-none' 
+                            : 'max-w-4xl max-h-[85vh]'
                     }`}
-                    style={{
-                        boxShadow: '0 0 60px rgba(0, 200, 255, 0.15), inset 0 1px 0 rgba(255,255,255,0.05)'
-                    }}
                 >
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.9, y: 20 }}
+                        animate={{ opacity: 1, scale: 1, y: 0 }}
+                        exit={{ opacity: 0, scale: 0.9, y: 20 }}
+                        transition={{ type: 'spring', damping: 25, stiffness: 300 }}
+                        className={`bg-[#1a1a2e] border border-[#30305a] shadow-2xl overflow-hidden flex flex-col h-full rounded-lg`}
+                        style={{
+                            boxShadow: '0 0 60px rgba(0, 200, 255, 0.15), inset 0 1px 0 rgba(255,255,255,0.05)'
+                        }}
+                    >
                     {/* Terminal Window Header */}
                     <div className="bg-gradient-to-r from-[#0d0d1a] to-[#1a1a2e] border-b border-[#30305a] px-3 py-2 flex items-center justify-between shrink-0">
                         {/* Window controls */}
@@ -201,6 +203,7 @@ export function CodeModal({
                             <span>SIGNATURE.PRO ENGINE</span>
                         </div>
                     </div>
+                    </motion.div>
                 </Dialog.Panel>
             </div>
         </Dialog>

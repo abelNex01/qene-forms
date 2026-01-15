@@ -28,45 +28,159 @@ export function Hero() {
 
   const handleDocsClick = () => {
     setActiveData({
-        title: "AI Form Builder Docs",
-        content: (
-            <div className="space-y-6">
-                <div className="border-b border-white/10 pb-4 mb-4">
-                    <h1 className="text-2xl font-bold text-primary mb-2">AI Form Builder</h1>
-                    <p className="text-gray-400">Stable Release</p>
-                </div>
+      title: "Qene Forms Documentation", // Updated title
+      content: (
+        <div className="space-y-8 font-mono text-sm leading-relaxed max-w-3xl">
+          {/* Header Section */}
+          <div className="border-b border-border/40 pb-6">
+            <h1 className="text-3xl font-bold text-primary mb-3 tracking-tight">Qene Forms</h1>
+            <p className="text-muted-foreground text-base">
+              The AI-Native Form Builder. Generate, Refine, Export.
+            </p>
+          </div>
 
-                <div className="grid gap-4">
-                    <section>
-                        <h3 className="text-lg font-bold text-white mb-2">1. Overview</h3>
-                        <p className="text-gray-300 leading-relaxed">
-                            AI Form Builder is the ultimate AI-powered interface builder. Design visually, customize with code, and export to any modern framework including React, Vue, Svelte, and Angular.
-                        </p>
-                    </section>
-
-                    <section>
-                        <h3 className="text-lg font-bold text-white mb-2">2. Core Capabilities</h3>
-                        <ul className="list-disc pl-5 space-y-2 text-gray-300">
-                            <li><span className="text-primary">Universal Export:</span> Generate native code for 8+ frameworks.</li>
-                            <li><span className="text-primary">AI Integration:</span> Prompt-to-UI generation and smart refactoring.</li>
-                            <li><span className="text-primary">Type Safety:</span> Built-in TypeScript & Zod validation active by default.</li>
-                            <li><span className="text-primary">Visual Studio:</span> Professional-grade drag-and-drop environment.</li>
-                        </ul>
-                    </section>
-
-                    <section>
-                        <h3 className="text-lg font-bold text-white mb-2">3. Quick Start</h3>
-                        <div className="p-4 bg-black/50 border border-white/10 font-mono text-xs text-gray-400 rounded">
-                            <p className="text-gray-500"># Install the CLI</p>
-                            <p className="mb-2"><span className="text-yellow-500">npm</span> install -g @ai-builder/cli</p>
-                            
-                            <p className="text-gray-500 mt-4"># Initialize a new project</p>
-                            <p><span className="text-purple-400">ai-builder</span> init my-app</p>
-                        </div>
-                    </section>
-                </div>
+          {/* 1. Dashboard & Usage (New First Instruction) */}
+          <section className="space-y-4">
+            <h2 className="text-xl font-bold text-foreground flex items-center gap-2">
+              <span className="text-primary">01.</span> Dashboard & Usage
+            </h2>
+            <div className="bg-muted/10 border border-white/5 p-4 rounded-md text-gray-300 text-xs md:text-sm leading-relaxed">
+              <p className="mb-3">
+                <strong className="text-white">Start Building Immediately:</strong> Visit the{" "}
+                <span className="text-primary cursor-pointer hover:underline" onClick={() => setLocation("/dashboard")}>
+                  Studio Dashboard
+                </span>{" "}
+                to access the full suite of tools. No installation required for the web interface.
+              </p>
+              <ul className="list-disc pl-5 space-y-2">
+                <li>
+                  <strong className="text-white">AI Generation:</strong> Type a natural language prompt (e.g., "Contact form with phone validation") into the text bar. The local AI will construct the form instantly.
+                </li>
+                <li>
+                  <strong className="text-white">Drag & Drop Builder:</strong> Manually refine your form by dragging input fields (Text, Checkbox, Select) from the left sidebar onto the canvas.
+                </li>
+                <li>
+                  <strong className="text-white">Real-time Preview:</strong> See your form evolve as you mix AI generation with manual customization.
+                </li>
+              </ul>
             </div>
-        )
+          </section>
+
+          {/* 2. Installation (Renumbered) */}
+          <section className="space-y-4">
+            <h2 className="text-xl font-bold text-foreground flex items-center gap-2">
+              <span className="text-primary">02.</span> Installation (Package)
+            </h2>
+            <div className="bg-black/40 border border-white/10 p-4 rounded-md font-mono text-xs md:text-sm overflow-x-auto">
+              <p className="text-gray-500 mb-2"># Install via NPM</p>
+              <p className="mb-4">
+                <span className="text-yellow-500">npm</span> install qene-forms
+              </p>
+
+              <p className="text-gray-500 mb-2"># Import in your project</p>
+              <p>
+                <span className="text-purple-400">import</span> {"{ FormBuilder }"}{" "}
+                <span className="text-purple-400">from</span> 'qene-forms';
+              </p>
+            </div>
+          </section>
+
+          {/* 3. Core Workflow (Renumbered) */}
+          <section className="space-y-4">
+            <h2 className="text-xl font-bold text-foreground flex items-center gap-2">
+              <span className="text-primary">03.</span> The Generation Process
+            </h2>
+            <div className="grid md:grid-cols-3 gap-4">
+              <div className="bg-muted/10 p-4 rounded border border-white/5">
+                <h3 className="text-white font-bold mb-2">1. Prompt</h3>
+                <p className="text-muted-foreground text-xs">
+                  Describe your form in natural language.
+                  <br />
+                  <span className="text-primary italic">
+                    "Login form with email, password, and remember me."
+                  </span>
+                </p>
+              </div>
+              <div className="bg-muted/10 p-4 rounded border border-white/5">
+                <h3 className="text-white font-bold mb-2">2. Refine</h3>
+                <p className="text-muted-foreground text-xs">
+                  Use the drag-and-drop sidebar to precise control, reorder items, or
+                  adjust validation rules manually.
+                </p>
+              </div>
+              <div className="bg-muted/10 p-4 rounded border border-white/5">
+                <h3 className="text-white font-bold mb-2">3. Export</h3>
+                <p className="text-muted-foreground text-xs">
+                  Generate production-ready code for React, Vue, Svelte, or HTML/CSS. 100%
+                  type-safe.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          {/* 4. Features Detail (Renumbered) */}
+          <section className="space-y-4">
+            <h2 className="text-xl font-bold text-foreground flex items-center gap-2">
+              <span className="text-primary">04.</span> Advanced Features
+            </h2>
+            <ul className="grid md:grid-cols-2 gap-3 text-sm text-gray-300">
+              <li className="flex items-start gap-2">
+                <span className="text-primary">✓</span>
+                <span>
+                  <strong>Local AI Engine:</strong> TensorFlow.js runs entirely in your
+                  browser. No data leaves your machine.
+                </span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-primary">✓</span>
+                <span>
+                  <strong>Multi-Framework:</strong> Native support for React (Hook Form),
+                  Vue 3, Svelte, and raw HTML.
+                </span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-primary">✓</span>
+                <span>
+                  <strong>Tailwind CSS 4:</strong> Components are styled with the latest
+                  Atomic CSS engine.
+                </span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-primary">✓</span>
+                <span>
+                  <strong>Zod Validation:</strong> Automatic schema generation for robust
+                  form handling.
+                </span>
+              </li>
+            </ul>
+          </section>
+
+          {/* 5. Architecture (Renumbered) */}
+          <section className="space-y-4">
+            <h2 className="text-xl font-bold text-foreground flex items-center gap-2">
+              <span className="text-primary">05.</span> Technical Architecture
+            </h2>
+            <div className="prose prose-invert prose-sm text-muted-foreground">
+              <p>
+                Qene Forms utilizes <strong>TensorFlow.js</strong> with the Universal
+                Sentence Encoder to map natural language intents to concrete form field
+                definitions. The <strong>CodeGenerator</strong> transpiles this definition
+                into idiomatic code for your chosen framework.
+              </p>
+            </div>
+          </section>
+
+          <div className="pt-4 border-t border-white/10 text-center">
+            <p className="text-xs text-muted-foreground">
+              Looking for the API Reference?{" "}
+              <a href="#" className="text-primary hover:underline">
+                Check out the GitHub Repository
+              </a>
+              .
+            </p>
+          </div>
+        </div>
+      ),
     });
     setTerminalOpen(true);
   };
@@ -86,7 +200,7 @@ export function Hero() {
             >
                 <div className="h-[1px] w-8 md:w-12 bg-primary" />
                 <span className="text-mono text-xs md:text-sm text-primary">
-                  <DecryptedText text="AI FORM BUILDER" animateOn="view" speed={40} maxIterations={15} />
+                  <DecryptedText text="QENE FORMS" animateOn="view" speed={40} maxIterations={15} />
                 </span>
             </motion.div>
             
@@ -116,7 +230,7 @@ export function Hero() {
               className="text-body md:text-body-lg text-muted-foreground max-w-xl border-l-2 border-primary/30 pl-6 mt-12 mb-12"
             >
               <DecryptedText 
-                text="The ultimate AI-powered UI builder. Design visually, validate with Zod, and export production-ready code for React, Vue, Svelte, and more." 
+                text="The intelligent form generation engine. Transform natural language into complex, validated, and type-safe forms running entirely in your browser." 
                 animateOn="view" 
                 speed={30} 
                 maxIterations={8} 
@@ -193,7 +307,7 @@ export function Hero() {
              <div className="relative z-10">
                  <img 
                     src={emailUiImage} 
-                    alt="AI Form Builder Interface" 
+                    alt="Qene Forms Interface" 
                     className="w-full rotate-6 h-auto rounded-lg shadow-[0_0_50px_hsl(var(--primary)/0.25)]"
                  />
              </div>
@@ -221,7 +335,7 @@ export function Hero() {
                   <DecryptedText text="PROJECT" animateOn="view" speed={50} maxIterations={8} />
                   <span className="text-primary"><DecryptedText text="SYNCED" animateOn="view" speed={50} maxIterations={8} /></span>
                 </div>
-                <div className="font-mono text-xs text-foreground/80"><DecryptedText text="AI_Form_Builder.tsx" animateOn="view" speed={50} maxIterations={8} /></div>
+                <div className="font-mono text-xs text-foreground/80"><DecryptedText text="Qene_Forms.tsx" animateOn="view" speed={50} maxIterations={8} /></div>
               </motion.div>
 
               <motion.div

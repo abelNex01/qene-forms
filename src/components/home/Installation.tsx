@@ -15,13 +15,13 @@ export function Installation() {
   const commands = [
     {
       id: "install",
-      label: "Install Global CLI",
-      cmd: "npm install -g @qene/cli"
+      label: "Install Package",
+      cmd: "npm install qene-forms"
     },
     {
       id: "usage",
-      label: "Create New Project",
-      cmd: "qene init new-app"
+      label: "Import Component",
+      cmd: "import { FormBuilder } from 'qene-forms'"
     }
   ];
 
@@ -80,7 +80,7 @@ export function Installation() {
                 </h2>
             </div>
             <p className="text-body text-muted-foreground mb-8">
-                Install the Qene Form Builder CLI to scaffold projects, generate components, and sync your local environment with the cloud.
+                Install the Qene Forms library to easily integrate powerful form building capabilities directly into your React applications.
             </p>
             <div className="flex flex-col gap-4 border-l-2 border-primary/20 pl-6">
                 <div className="flex items-center gap-3">
@@ -89,11 +89,11 @@ export function Installation() {
                 </div>
                 <div className="flex items-center gap-3">
                     <div className="w-1.5 h-1.5 bg-primary rounded-full" />
-                    <span className="text-sm font-mono text-muted-foreground">Latest: v2.4.0</span>
+                    <span className="text-sm font-mono text-muted-foreground">Latest: v1.0.0</span>
                 </div>
                 <div className="flex items-center gap-3">
                     <div className="w-1.5 h-1.5 bg-primary rounded-full" />
-                    <span className="text-sm font-mono text-muted-foreground">Cross-Platform (Windows, Mac, Linux)</span>
+                    <span className="text-sm font-mono text-muted-foreground">React & Next.js Compatible</span>
                 </div>
             </div>
           </div>

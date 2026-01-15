@@ -20,18 +20,13 @@ const features = [
   },
   {
     icon: Shield,
-    title: "Type Safety First",
-    description: "Built-in Zod validation and TypeScript definitions ensure your applications are robust and crash-proof."
-  },
-  {
-    icon: Layers,
-    title: "Theme System",
-    description: "Fully customizable design tokens powered by Tailwind CSS. Switch dark/light modes and brand colors instantly."
+    title: "Private by Design",
+    description: "Zero data leakage. Our AI runs 100% locally in your browser using TensorFlow.js, ensuring your prompts and code stay on your device."
   },
   {
     icon: Globe,
-    title: "Accessibility",
-    description: "Every component is WCAG 2.1 compliant out of the box. Build inclusive applications without the extra effort."
+    title: "Smart Validation",
+    description: "Auto-generated Zod schemas and accessible error handling baked into every form. Robust validation without the boilerplate."
   }
 ];
 
@@ -49,7 +44,7 @@ export function Features() {
               </h2>
           </div>
           <p className="text-body-lg text-muted-foreground leading-relaxed">
-            Qene Form Builder combines the speed of visual building with the power of modern engineering.
+            Qene Forms combines the speed of AI generation with the precision of manual control.
           </p>
         </div>
 
