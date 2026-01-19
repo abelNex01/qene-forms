@@ -1,9 +1,9 @@
 # Qene Forms - Project Documentation
 
 ## 1. Executive Summary
-**Qene Forms** is a modern, client-side web application designed to revolutionize how developers and non-technical users create web forms. By leveraging local AI (TensorFlow.js), the application allows users to generate complex, validated, and styled forms simply by typing natural language prompts (e.g., *"Create a job application form with resume upload"*).
+**Qene Forms** is a modern, client-side web application designed to simplify how developers create web forms. Using an intuitive drag-and-drop interface, developers can visually build complex, validated, and styled forms without writing repetitive boilerplate code.
 
-Unlike traditional drag-and-drop builders, this tool understands context and intent, generating not just the visual layout but also production-ready code for multiple frameworks (React, Vue, Svelte, Angular, etc.). Recent updates have further enhanced the experience with a "Terminal/CLI" aesthetic, improved mobile responsiveness, and a fully modularized editor architecture.
+Unlike traditional form builders, Qene Forms generates production-ready code for multiple frameworks (React, Vue, Svelte, Angular, etc.) with a single click. The application features a professional "Terminal/CLI" aesthetic, excellent mobile responsiveness, and a fully modularized editor architecture.
 
 ---
 
@@ -12,43 +12,37 @@ Unlike traditional drag-and-drop builders, this tool understands context and int
 ### 2.1 Core Stack
 The application is built on a cutting-edge frontend stack, ensuring high performance and a premium developer experience.
 *   **Framework:** React 19 (Latest) with TypeScript.
-*   **Build Tool:** Vite 7 (Excedingly fast HMR and build).
+*   **Build Tool:** Vite 7 (Exceedingly fast HMR and build).
 *   **Styling:** Tailwind CSS 4 (Atomic CSS engine) + Shadcn/UI (Radix Primitives).
 *   **Routing:** `wouter` (Minimalist, modern routing).
 *   **State Management:** Zustand (Lightweight global state).
 *   **Animations:** Framer Motion & GSAP (Complex interactions).
 *   **3D Graphics:** React Three Fiber / Drei (Interactive hero elements).
 
-### 2.2 The "Brain": Client-Side AI Engine
-A standout feature is that **no data leaves the user's browser**. The AI runs entirely locally.
-*   **Library:** `TensorFlow.js` (`@tensorflow/tfjs`).
-*   **Model:** Universal Sentence Encoder (USE).
-*   **Mechanism:**
-    1.  **Vector Embeddings:** The app loads a pre-trained model to convert text into numerical vectors (embeddings).
-    2.  **Semantic Search:** It calculates the "Cosine Similarity" between the user's prompt and a predefined "Knowledge Base" of form templates and field concepts.
-    3.  **Hybrid Parsing:**
-        *   **Top-Down:** First, it tries to match the prompt to a full template (e.g., "User Registration").
-        *   **Bottom-Up:** If no template matches, it breaks the sentence into chunks and matches them to individual field types.
+### 2.2 Form Builder Engine
+The core of the application is a visual form builder with the following capabilities:
+*   **Drag & Drop Interface:** Users can drag field types from the sidebar onto the canvas.
+*   **Field Configuration:** Each field can be customized with labels, placeholders, validation rules, and conditional logic.
+*   **Real-time Preview:** Forms are rendered in real-time as users build them.
+*   **Universal Export:** Forms can be exported as clean, production-ready code.
 
 ### 2.3 Project Structure
-The codebase has been refactored for modularity and maintainability:
+The codebase is organized for modularity and maintainability:
 ```
 src/
-├── ai/                 # The AI Brain
-│   ├── generator.ts    # Main logic: Prompt -> Form Fields
-│   ├── model.ts        # TensorFlow model loader & embedding engine
-│   └── knowledge.ts    # Pre-defined templates (Registration, Contact, etc.)
 ├── components/
-│   ├── ai-editor/      # The Core Application Workspace (Modularized)
+│   ├── ai-editor/      # The Core Form Builder Workspace (Modularized)
 │   │   ├── Canvas.tsx          # Droppable area for form fields
-│   │   ├── SidebarLeft.tsx     # Tools, Drag-and-Drop source
-│   │   ├── SidebarRight.tsx    # Property editors
+│   │   ├── SidebarLeft.tsx     # Field type palette, drag source
+│   │   ├── SidebarRight.tsx    # Field property editors
 │   │   ├── Header.tsx          # Editor controls & status
 │   │   ├── ExportModal.tsx     # Code export interface
-│   │   ├── DraggableField.tsx  # Drag source components
-│   │   ├── DroppableCanvas.tsx # Drop target logic
+│   │   ├── PreviewModal.tsx    # Live form preview
+│   │   ├── CodeModal.tsx       # Generated code viewer
+│   │   ├── useAIEditor.ts      # Core state management hook
+│   │   ├── constants.ts        # Field types and validation rules
 │   │   └── codeGenerator.ts    # Transpiler: Fields -> Source Code
-│   ├── home/           # Landing Page (Hero, Features, Workflow, etc.)
+│   ├── home/           # Landing Page (Hero, Features, Integrations, etc.)
 │   └── ui/             # Reusable UI components (TerminalPopup, etc.)
 ├── pages/              # Route views (Home, Dashboard)
 └── lib/                # Utilities and shared configurations
@@ -58,46 +52,57 @@ src/
 
 ## 3. Core Features & Logic Deep Dive
 
-### 3.1 The AI Generation Flow
-When a user types *"Make a subscription form with newsletter checkbox"*:
-1.  **Input Processing:** The prompt is cleaned and tokenized.
-2.  **Understanding:** The system identifies high-level intents. It can now recognize full templates (e.g., "Registration") and generate complete sets of fields rather than single generic inputs.
-3.  **Result Construction:** A JSON object representing the form (IDs, labels, validation rules) is generated.
+### 3.1 The Form Building Flow
+When a user builds a form in the dashboard:
+1.  **Add Fields:** Click or drag field types from the left sidebar onto the canvas.
+2.  **Configure Fields:** Select a field to customize its label, placeholder, validation, and conditional visibility.
+3.  **Reorder Fields:** Drag fields within the canvas to reorder them.
+4.  **Export:** Generate production-ready code for the target framework.
 
 ### 3.2 The Universal Code Generator
 The `CodeGenerator` class (`src/components/ai-editor/codeGenerator.ts`) is a custom transpiler that:
-*   **Inputs:** The JSON form definition.
+*   **Inputs:** The JSON form definition (array of field objects).
 *   **Configuration:** Target Framework (HTML, CSS+JS, React+TS+Tailwind, Next.js, Vue, Angular, Svelte, PHP).
 *   **Outputs:** Complete, copy-paste ready source code strings.
     *   *React:* Automatically includes `zod` schema validation and `react-hook-form`.
-    *   *Exports:* Fixed logic ensures correct code generation for all selected options, with a robust download mechanism.
+    *   *Exports:* Clean, properly formatted code for all selected options.
 
-### 3.3 Visual & User Experience
-*   **Hero Section:** Enhanced with a `GridDistortion` background, a direct glow effect on the hero image (replacing the old drop shadow), and floating 3D cards (including an "Encryption" card) to emphasize security. Tech/Framework logos have been updated for accuracy.
-*   **Workflow Section:** Optimized spacing to minimize negative space and improve the sticky stacking animation flow.
-*   **Mobile Interactions:** Fixed touch event handling to ensure drag-and-drop and canvas interactions work seamlessly on mobile and tablet devices.
-*   **Terminal Aesthetics:**
-    *   **Terminal Popups:** "View Documentation" and footer links now trigger a custom, draggable Terminal window UI instead of simple redirects or alerts.
-    *   **Donation Modal:** Redesigned with sharp corners and a technical look to align with the CLI aesthetic. Logic fixed to prevent blank screens during bank selection.
+### 3.3 Field Types
+The form builder supports the following field types:
+*   **Text Input** - Standard text field
+*   **Text Area** - Multi-line text input
+*   **Number** - Numeric input with min/max support
+*   **Email** - Email input with validation
+*   **Password** - Secure password input
+*   **Phone** - Phone number input
+*   **URL** - URL input with validation
+*   **Dropdown/Select** - Single selection from options
+*   **Checkbox** - Boolean toggle
+*   **Radio Buttons** - Single selection from visible options
+*   **Date/Time** - Date and time pickers
+*   **File Upload** - File input with accept filter
+*   **Rating** - Star rating input
+*   **Toggle** - Switch/toggle input
 
-### 3.4 Drag and Drop Builder
-A newly implemented Drag and Drop system allows users to explicitly construct forms:
-*   **Sidebar:** draggable input types (Text, Email, Checkbox, etc.).
-*   **Canvas:** A droppable area where users can place and reorder fields.
-*   **Hybrid Workflow:** Users can start with an AI prompt and then refine the layout via manual drag-and-drop.
+### 3.4 Visual & User Experience
+*   **Hero Section:** Features a floating image with decorative cards showing build status.
+*   **Terminal Aesthetics:** "View Documentation" and footer links trigger custom, draggable Terminal window UI.
+*   **Mobile Interactions:** Touch event handling ensures drag-and-drop works on mobile and tablet devices.
+*   **Dark Mode First:** Clean, developer-focused UI with vibrant accent colors.
 
 ---
 
 ## 4. Design Philosophy
-The application prioritizes **"Invisible Complexity"** and **"Premium Aesthetics"**.
-*   **For the User:** It feels like magic. They type a sentence, and a fully functional form appears.
-*   **Under the Hood:** Complex vector math, dependency injection, and AST-like code generation handle the heavy lifting.
-*   **Aesthetics:** Dark mode first, utilizing vibrant accent colors (Blue/Purple/Pink gradients), glassmorphism, and smooth animations found in modern SaaS tools.
+The application prioritizes **"Simplicity through Visual Design"** and **"Premium Aesthetics"**.
+*   **For the User:** An intuitive, visual interface that makes form building feel natural.
+*   **Under the Hood:** Clean component architecture and proper code generation for production use.
+*   **Aesthetics:** Dark mode first, utilizing vibrant accent colors (Blue/Purple/Pink gradients), glassmorphism, and smooth animations.
 
 ---
 
 ## 5. Future Scalability
 The architecture is designed to expand:
 *   **New Frameworks:** Adding support for *SolidJS* or *Qwik* is as simple as adding a method to the `CodeGenerator` class.
-*   **Smarter AI:** The `knowledge.ts` file can be easily expanded with more templates without touching core logic.
+*   **More Field Types:** New field types can be added to the `constants.ts` file with corresponding preview and export logic.
 *   **Cloud Sync:** Currently local-only, but the `Zustand` state can easily be serialized to a backend (Supabase/Firebase) for saving projects.
+*   **Templates:** Pre-built form templates for common use cases (registration, contact, surveys).

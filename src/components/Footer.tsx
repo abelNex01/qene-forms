@@ -115,9 +115,9 @@ export function Footer() {
       { 
         label: "Qene Studio", 
         desc: "Advanced visual editor for rapid form composition.",
-        detailedDesc: "The Qene Studio is our professional-grade visual environment for form construction. It provides a distraction-free, high-performance workspace where you can orchestrate complex field interactions and data structures with ease.",
-        features: ["Drag & Drop", "Real-time Preview", "Component Isolation", "Props Editor"],
-        stats: { "Engine": "V4-Core", "Latency": "<16ms", "Components": "50+" },
+        detailedDesc: "The Qene Studio is our professional-grade visual environment for form construction. It provides a distraction-free, high-performance workspace where you can drag and drop fields, configure validation rules, and build complex form structures with ease.",
+        features: ["Drag & Drop", "Real-time Preview", "Field Configuration", "Validation Rules"],
+        stats: { "Engine": "V4-Core", "Latency": "<16ms", "Field Types": "15+" },
         url: "/dashboard",
         urlLabel: "LAUNCH_STUDIO",
         codeSnippet: "qene-forms --studio"
@@ -125,9 +125,9 @@ export function Footer() {
       { 
         label: "About Application", 
         desc: "The mission and technology behind the Qene ecosystem.",
-        detailedDesc: "Qene Forms is a state-of-the-art form generation engine that leverages browser-based AI to transform the way developers build user interfaces. Our philosophy is rooted in 'Code as a First Class Citizen', ensuring every form generated is clean, accessible, and ready for production.",
-        features: ["AI-Native Engine", "Browser-Local Privacy", "Universal Framework Support", "Type-Safe Architecture"],
-        stats: { "Version": "v1.2.0-STABLE", "Status": "ONLINE", "Core": "OPEN_SOURCE" },
+        detailedDesc: "Qene Forms is a professional form building tool designed for developers who want to create forms visually and export clean, production-ready code. Our philosophy is rooted in 'Code as a First Class Citizen', ensuring every form generated is clean, accessible, and ready for production.",
+        features: ["Visual Builder", "Multi-Framework Export", "Universal Framework Support", "Type-Safe Architecture"],
+        stats: { "Version": "v2.4.0-STABLE", "Status": "ONLINE", "Core": "OPEN_SOURCE" },
         url: "https://qeneforms.com",
         urlLabel: "OFFICIAL_WEBSITE",
         codeSnippet: "qene --info"
@@ -145,7 +145,7 @@ export function Footer() {
         desc: "Pre-built, accessible form components.",
         detailedDesc: "Access a specialized library of form inputs, selects, date pickers, and file uploads. Fully accessible and styled, ready to drop into any application.",
         features: ["WAI-ARIA Compliant", "Dark Mode Ready", "Themable", "Responsive"],
-        stats: { "Components": "100+", "Accessibility": "WCAG 2.1", "Updates": "Weekly" },
+        stats: { "Components": "15+", "Accessibility": "WCAG 2.1", "Updates": "Regular" },
         codeSnippet: "import { Button } from 'qene-forms/ui';"
       },
     ],
@@ -153,33 +153,33 @@ export function Footer() {
       { 
         label: "Documentation", 
         desc: "Comprehensive guides and API references.",
-        detailedDesc: "Everything you need to master Qene Forms. From quick start guides to deep dives into the plugin architecture, our documentation is built for developers by developers.",
+        detailedDesc: "Everything you need to master Qene Forms. From quick start guides to deep dives into the export system, our documentation is built for developers by developers.",
         features: ["Interactive Examples", "Video Tutorials", "API Reference", "Architecture Guide"],
-        stats: { "Pages": "400+", "Examples": "1M+", "Search": "Instant" },
+        stats: { "Pages": "50+", "Examples": "100+", "Search": "Instant" },
         codeSnippet: "docs.search('custom components')"
       },
       { 
         label: "Templates", 
         desc: "Start faster with production-ready form templates.",
-        detailedDesc: "Browse our collection of common form patterns. Registration flows, checkout pages, surveys, and multi-step wizards - all pre-configured and ready to deploy.",
-        features: ["Dashboard Kits", "SaaS Starters", "Marketing Pages", "App UI"],
-        stats: { "Categories": "12", "Free": "50+", "Premium": "100+" },
-        codeSnippet: "npx create-qene-app --template=saas"
+        detailedDesc: "Browse our collection of common form patterns. Registration flows, checkout pages, surveys, and multi-step wizards - all pre-configured and ready to customize.",
+        features: ["Registration Forms", "Contact Forms", "Surveys", "Multi-Step Wizards"],
+        stats: { "Categories": "8", "Free": "20+", "Premium": "Coming Soon" },
+        codeSnippet: "npx create-qene-app --template=registration"
       },
       { 
         label: "Changelog", 
         desc: "Latest features, fixes, and improvements.",
-        detailedDesc: "Stay up to date with the rapid evolution of Qene Forms. We release weekly updates with performance improvements, new components, and feature enhancements based on community feedback.",
-        features: ["Weekly Updates", "LTS Versions", "Beta Access", "Roadmap"],
-        stats: { "Version": "2.4.0", "Release": "Stable", "Frequency": "Weekly" },
+        detailedDesc: "Stay up to date with the evolution of Qene Forms. We release regular updates with performance improvements, new field types, and feature enhancements based on community feedback.",
+        features: ["Regular Updates", "LTS Versions", "Beta Access", "Roadmap"],
+        stats: { "Version": "2.4.0", "Release": "Stable", "Frequency": "Monthly" },
         codeSnippet: "npm list qene-forms"
       },
       { 
         label: "Community", 
-        desc: "Join thousands of developers building with Qene Forms.",
-        detailedDesc: "Connect with other developers, share your creations, and get help from the community. Our Discord server and GitHub discussions are vibrant hubs of innovation.",
+        desc: "Join developers building with Qene Forms.",
+        detailedDesc: "Connect with other developers, share your creations, and get help from the community. Our Discord server and GitHub discussions are hubs for sharing form designs and best practices.",
         features: ["Discord Server", "GitHub Discussions", "Community Showcases", "Plugin Registry"],
-        stats: { "Members": "15k+", "Online": "1.2k", "Topics": "Dev/Design" },
+        stats: { "Members": "Growing", "Online": "Active", "Topics": "Dev/Design" },
         codeSnippet: "open https://discord.gg/qene-forms"
       },
     ],
@@ -187,9 +187,9 @@ export function Footer() {
       { 
         label: "Privacy Policy", 
         desc: "How we handle your data.",
-        detailedDesc: "We believe in data sovereignty. Your designs and code belong to you. We only collect essential telemetry to improve the product, and you can opt-out at any time.",
+        detailedDesc: "We believe in data sovereignty. Your designs and code belong to you. Qene Forms runs entirely in your browser - no data is sent to external servers. Your forms stay on your machine.",
         features: ["GDPR Compliant", "Data Sovereignty", "No Tracking", "Transparent"],
-        stats: { "Last Updated": "Jan 2026", "Compliance": "Global", "Data": "Encrypted" },
+        stats: { "Last Updated": "Jan 2026", "Compliance": "Global", "Data": "Local Only" },
         codeSnippet: "privacy.policy.read()"
       },
       { 
@@ -203,9 +203,9 @@ export function Footer() {
       { 
         label: "Security", 
         desc: "Platform security measures.",
-        detailedDesc: "Enterprise-grade security is baked in. From SOC2 compliance to regular penetration testing, we ensure your development environment is secure and reliable.",
-        features: ["SOC2 Type II", "SAML/SSO", "Audit Logs", "2FA Support"],
-        stats: { "Uptime": "99.99%", "Audits": "Quarterly", "Bounty": "Active" },
+        detailedDesc: "Your data never leaves your browser. Qene Forms processes everything locally, ensuring maximum privacy and security for your form designs and exported code.",
+        features: ["Browser-Local Processing", "No Cloud Upload", "Secure Export", "Regular Updates"],
+        stats: { "Processing": "Local", "Upload": "None", "Privacy": "Maximum" },
         codeSnippet: "security.status()"
       },
     ]
@@ -232,7 +232,7 @@ export function Footer() {
             </div>
             <p className="text-muted-foreground text-sm leading-relaxed max-w-sm">
               <DecryptedText 
-                text="The advanced AI-powered engine for generating production-ready forms. Build faster, validate instantly, export anywhere." 
+                text="The professional drag-and-drop form builder. Create beautiful, validated forms visually and export production-ready code for any framework." 
                 animateOn="view" 
                 speed={20} 
                 maxIterations={6} 
@@ -241,16 +241,16 @@ export function Footer() {
             
             <div className="flex gap-2 pt-4">
                <div className="px-3 py-1 bg-background border border-border flex items-center gap-2 rounded-none">
-                  <Zap className="w-3 h-3 text-yellow-500" />
-                  <span className="text-[10px] font-mono text-muted-foreground uppercase">
-                    <DecryptedText text="AI Powered" animateOn="view" speed={40} maxIterations={8} />
-                  </span>
+                 <PenTool className="w-3 h-3 text-primary" />
+                 <span className="text-[10px] font-mono text-muted-foreground uppercase">
+                   <DecryptedText text="Visual Builder" animateOn="view" speed={40} maxIterations={8} />
+                 </span>
                </div>
                <div className="px-3 py-1 bg-background border border-border flex items-center gap-2 rounded-none">
-                  <Shield className="w-3 h-3 text-muted-foreground" />
-                  <span className="text-[10px] font-mono text-muted-foreground uppercase">
-                    <DecryptedText text="Type Safe" animateOn="view" speed={40} maxIterations={8} />
-                  </span>
+                 <Shield className="w-3 h-3 text-muted-foreground" />
+                 <span className="text-[10px] font-mono text-muted-foreground uppercase">
+                   <DecryptedText text="Type Safe" animateOn="view" speed={40} maxIterations={8} />
+                 </span>
                </div>
             </div>
           </div>
@@ -303,7 +303,7 @@ export function Footer() {
             </h4>
             <p className="text-xs text-muted-foreground mb-4">
               <DecryptedText 
-                text="Join our developer network. Get the latest templates, AI prompts, and tutorials delivered to your inbox." 
+                text="Join our developer network. Get the latest templates, tutorials, and updates delivered to your inbox." 
                 animateOn="view" 
                 speed={20} 
                 maxIterations={6} 

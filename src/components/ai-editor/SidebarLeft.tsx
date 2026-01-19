@@ -16,22 +16,7 @@ export function SidebarLeft({
     isOpen = false,
     onClose,
     isCollapsible = false,
-    onGenerate
-}: SidebarLeftProps & { onGenerate?: (prompt: string) => Promise<void> }) {
-  const [prompt, setPrompt] = React.useState('');
-  const [isGenerating, setIsGenerating] = React.useState(false);
-
-  const handleGenerate = async () => {
-    if (!prompt.trim() || !onGenerate) return;
-    setIsGenerating(true);
-    try {
-      await onGenerate(prompt);
-      setPrompt('');
-    } finally {
-      setIsGenerating(false);
-    }
-  };
-
+}: SidebarLeftProps) {
   const sidebarContent = (
     <>
       {/* Grid pattern overlay */}
@@ -66,7 +51,7 @@ export function SidebarLeft({
         </div>
         
         {/* Field type list with line numbers */}
-        <div className="space-y-0.5 mb-8">
+        <div className="space-y-0.5">
           {FIELD_TYPES.map(({ type, label, icon: Icon }, index) => (
             <button
               key={type}
@@ -101,39 +86,6 @@ export function SidebarLeft({
               </span>
             </button>
           ))}
-        </div>
-
-        {/* AI Generator Section */}
-        <div className={`mt-10 pt-6 border-t border-border/50 ${isCollapsible ? 'hidden' : ''}`}>
-           <div className="flex items-center gap-2 mb-2">
-             <ChevronRight className="w-3 h-3 text-cyan-400" />
-             <span className="text-mono text-[11px] text-cyan-400 font-bold">
-               <DecryptedText text="AI_GENERATOR" animateOn="view" speed={60} maxIterations={8} />
-             </span>
-           </div>
-           
-           <div className="space-y-2">
-             <textarea
-               value={prompt}
-               onChange={(e) => setPrompt(e.target.value)}
-               placeholder="e.g., 'User registration with email, password, and address'..."
-               className="w-full h-20 bg-muted/30 border border-border text-xs p-2 focus:outline-none focus:border-cyan-400 text-foreground resize-none rounded-sm placeholder:text-muted-foreground/50"
-             />
-             <button
-                onClick={handleGenerate}
-                disabled={isGenerating || !prompt.trim()}
-                className="w-full flex items-center justify-center gap-2 bg-cyan-400/10 hover:bg-cyan-400/20 border border-cyan-400/50 text-cyan-400 py-1.5 px-2 transition-colors disabled:opacity-50 disabled:cursor-not-allowed group"
-             >
-                {isGenerating ? (
-                  <span className="text-[10px] font-mono animate-pulse">GENERATING...</span>
-                ) : (
-                  <>
-                    <span className="text-[10px] font-bold font-mono">GENERATE</span>
-                    <div className="w-1.5 h-1.5 bg-cyan-400 rounded-full animate-pulse" />
-                  </>
-                )}
-             </button>
-           </div>
         </div>
       </div>
       

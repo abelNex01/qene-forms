@@ -1,5 +1,5 @@
 import React from 'react';
-import { Terminal, Undo, Redo, Eye, EyeOff, Download, Code, Cpu, Menu, Settings, X, Sparkles, PenTool } from 'lucide-react';
+import { Undo, Redo, Eye, EyeOff, Download, Code, Menu, Settings, X } from 'lucide-react';
 import { motion } from 'framer-motion';
 import DecryptedText from '@/components/ui/DecryptedText';
 
@@ -16,13 +16,11 @@ interface HeaderProps {
     setShowCode: (show: boolean) => void;
     onExport: () => void;
     hasFields?: boolean;
-    isProcessing?: boolean;
     fieldsCount: number;
     onToggleLeftSidebar?: () => void;
     onToggleRightSidebar?: () => void;
     leftSidebarOpen?: boolean;
     rightSidebarOpen?: boolean;
-    onOptimize?: () => void;
 }
 
 export function Header({
@@ -38,13 +36,11 @@ export function Header({
     setShowCode,
     onExport,
     hasFields = false,
-    isProcessing = false,
     fieldsCount,
     onToggleLeftSidebar,
     onToggleRightSidebar,
     leftSidebarOpen = false,
     rightSidebarOpen = false,
-    onOptimize
 }: HeaderProps) {
   return (
     <nav className="fixed top-0 left-0 right-0 bg-card/95 backdrop-blur-md border-b border-border z-50 h-14 sm:h-16">
@@ -90,21 +86,6 @@ export function Header({
 
           {/* Right Section: Actions + Right Sidebar Toggle */}
           <div className="flex items-center gap-1 sm:gap-2 shrink-0">
-
-            <button
-               onClick={onOptimize}
-               disabled={!hasFields || isProcessing}
-               className={`flex items-center gap-1 sm:gap-2 px-1.5 sm:px-3 py-1.5 sm:py-2 border transition-all ${
-                 hasFields && !isProcessing
-                   ? 'border-purple-500/50 hover:bg-purple-500/10 text-purple-400'
-                   : 'border-transparent text-muted-foreground opacity-50 cursor-not-allowed hidden sm:flex' 
-               }`}
-               title="AI Optimize"
-             >
-               <Sparkles className={`w-3.5 h-3.5 sm:w-4 sm:h-4 ${isProcessing ? 'animate-spin' : ''}`} />
-               <span className="text-mono text-xs hidden lg:inline">OPTIMIZE</span>
-             </button>
-
 
             <div className="hidden sm:flex items-center border border-border bg-muted/20">
               <button

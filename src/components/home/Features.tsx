@@ -1,27 +1,27 @@
 import { motion } from "framer-motion";
-import { Shield, Zap, Box, Layers, Code, Globe } from "lucide-react";
+import { Shield, Zap, Box, Code, Globe, MousePointer } from "lucide-react";
 import DecryptedText from "@/components/ui/DecryptedText";
 
 const features = [
   {
     icon: Zap,
     title: "Universal Export",
-    description: "Write once, export anywhere. Generate production-ready code for React, Vue, Svelte, Angular, and plain HTML."
+    description: "Write once, export anywhere. Generate production-ready code for React, Vue, Svelte, Angular, and plain HTML with a single click."
   },
   {
-    icon: Code,
-    title: "AI Assistant",
-    description: "Your intelligent coding partner. Generate complex layouts and refactor components with simple text prompts."
+    icon: MousePointer,
+    title: "Drag & Drop Builder",
+    description: "Intuitive visual interface for building forms. Simply drag field types onto the canvas and configure them with ease."
   },
   {
     icon: Box,
     title: "Visual Studio",
-    description: "A powerful drag-and-drop IDE that feels like a graphics tool but produces clean, semantic code."
+    description: "A powerful IDE-like workspace that feels like a graphics tool but produces clean, semantic, accessible code."
   },
   {
     icon: Shield,
-    title: "Private by Design",
-    description: "Zero data leakage. Our AI runs 100% locally in your browser using TensorFlow.js, ensuring your prompts and code stay on your device."
+    title: "Built-in Validation",
+    description: "Configure field validation rules visually. Support for required fields, patterns, min/max values, and custom regex."
   },
   {
     icon: Globe,
@@ -45,7 +45,7 @@ export function Features() {
           </div>
           <p className="text-body-lg text-muted-foreground leading-relaxed">
             <DecryptedText 
-              text="Qene Forms combines the speed of AI generation with the precision of manual control."
+              text="Qene Forms combines intuitive drag-and-drop building with powerful code generation for any framework."
               animateOn="view" 
               speed={20}
               maxIterations={10}

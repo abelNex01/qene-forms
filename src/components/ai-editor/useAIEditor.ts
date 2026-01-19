@@ -1,6 +1,6 @@
-import { useState, useCallback, useEffect } from 'react';
-import { generateId, generateEmbedding, cosineSimilarity } from './utils';
-import { FIELD_TYPES, SMART_SUGGESTIONS, VALIDATION_RULES } from './constants';
+import { useState, useCallback } from 'react';
+import { generateId } from './utils';
+import { FIELD_TYPES, VALIDATION_RULES } from './constants';
 
 export function useAIEditor() {
   // Form state
@@ -14,13 +14,6 @@ export function useAIEditor() {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [history, setHistory] = useState<any[][]>([[]]);
   const [historyIndex, setHistoryIndex] = useState(0);
-  
-  // UI state
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const [aiSuggestions, setAiSuggestions] = useState<any[]>([]);
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const [similarFields, setSimilarFields] = useState<any[]>([]);
-  const [isProcessing, setIsProcessing] = useState(false);
 
   // Save to history
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -46,72 +39,6 @@ export function useAIEditor() {
       setFields(JSON.parse(JSON.stringify(history[historyIndex + 1])));
     }
   }, [historyIndex, history]);
-
-  // AI: Generate smart suggestions
-  const generateSmartSuggestions = useCallback(async (label: string) => {
-    if (!label || label.length < 2) return;
-    
-    // Dynamic import to avoid circular dependencies
-    const { suggestFieldAttributes } = await import('../../ai/suggestions');
-    const suggestion = await suggestFieldAttributes(label);
-    
-    if (suggestion) {
-       setAiSuggestions([{
-         type: 'semantic',
-         fieldType: suggestion.type,
-         placeholder: suggestion.placeholder,
-         validation: suggestion.validation ? 'custom' : 'none', // Simplified mapping
-         confidence: 0.9,
-         ...suggestion
-       }]);
-    } else {
-       setAiSuggestions([]);
-    }
-  }, []);
-
-  // AI: Detect similar fields
-  const detectSimilarFields = useCallback(() => {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const similar: any[] = [];
-    fields.forEach((field, i) => {
-      const fieldEmbed = generateEmbedding(field.label);
-      fields.forEach((other, j) => {
-        if (i < j) {
-          const otherEmbed = generateEmbedding(other.label);
-          const similarity = cosineSimilarity(fieldEmbed, otherEmbed);
-          if (similarity > 0.7) {
-            similar.push({
-              field1: field,
-              field2: other,
-              similarity: similarity,
-            });
-          }
-        }
-      });
-    });
-    setSimilarFields(similar);
-  }, [fields]);
-
-  // AI: Auto layout optimization
-  const optimizeLayout = useCallback(async () => {
-    setIsProcessing(true);
-    // Dynamic import
-    const { analyzeForm } = await import('../../ai/optimization');
-    const issues = analyzeForm(fields);
-    
-    // In a real app, we would apply fixes. Here we just show a notification or auto-fix simple things.
-    // For now, let's just simulate an "Optimized" state or add a meta-field describing issues.
-    // Or we can just re-order fields if that was the "Optimization" goal.
-    // The original code grouped fields. Let's keep that grouping logic BUT use embeddings for it if we wanted to be super smart.
-    // Given 'analyzeForm' is mostly finding issues, let's log them for now or notify.
-    console.log('Optimization Issues:', issues);
-    
-    // Keep existing grouping logic for visual effect, but maybe we can improve it later.
-    // For now, let's just make it async to simulate work.
-    setTimeout(() => {
-       setIsProcessing(false);
-    }, 800);
-  }, [fields]);
 
   // Add field
   const addField = useCallback((type: string) => {
@@ -147,12 +74,7 @@ export function useAIEditor() {
       f.id === id ? { ...f, ...updates } : f
     );
     setFields(newFields);
-    
-    // Generate AI suggestions when label changes
-    if (updates.label) {
-      generateSmartSuggestions(updates.label);
-    }
-  }, [fields, generateSmartSuggestions]);
+  }, [fields]);
 
   // Save field changes to history
   const commitFieldChanges = useCallback(() => {
@@ -183,21 +105,6 @@ export function useAIEditor() {
       saveToHistory(newFields);
     }
   }, [fields, saveToHistory]);
-
-  // Apply AI suggestion
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const applySuggestion = useCallback((suggestion: any) => {
-    if (selectedField) {
-      const updates = {
-        type: suggestion.fieldType,
-        placeholder: suggestion.placeholder,
-        validation: suggestion.validation,
-      };
-      updateField(selectedField, updates);
-      commitFieldChanges();
-    }
-    setAiSuggestions([]);
-  }, [selectedField, updateField, commitFieldChanges]);
 
   // Export functions
   const exportJSON = useCallback(() => {
@@ -278,18 +185,6 @@ export function useAIEditor() {
       URL.revokeObjectURL(url);
     }, [fields, formTitle]);
 
-  // Update similar fields when fields change
-  useEffect(() => {
-    if (fields.length > 1) {
-      detectSimilarFields();
-    }
-    
-    // Simulate syncing/saving state
-    setIsProcessing(true);
-    const timer = setTimeout(() => setIsProcessing(false), 800);
-    return () => clearTimeout(timer);
-  }, [fields, detectSimilarFields]);
-
   return {
     fields,
     setFields,
@@ -303,16 +198,10 @@ export function useAIEditor() {
     history,
     undo,
     redo,
-    aiSuggestions,
-    similarFields,
-    isProcessing,
-    optimizeLayout,
-    detectSimilarFields,
     addField,
     updateField,
     deleteField,
     cloneField,
-    applySuggestion,
     commitFieldChanges,
     exportJSON,
     exportCode,

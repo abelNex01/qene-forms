@@ -1,5 +1,5 @@
 import React from 'react';
-import { Settings, Lightbulb, X, Plus, Code, Braces, Hash } from 'lucide-react';
+import { Settings, X, Plus, Code, Braces, Hash } from 'lucide-react';
 import { motion } from 'framer-motion';
 import DecryptedText from '@/components/ui/DecryptedText';
 import { FIELD_TYPES, VALIDATION_RULES } from './constants';
@@ -13,10 +13,6 @@ interface SidebarRightProps {
     updateField: (id: string, updates: any) => void;
     commitFieldChanges: () => void;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    aiSuggestions: any[];
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    applySuggestion: (suggestion: any) => void;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     fields: any[];
     isOpen?: boolean;
     onClose?: () => void;
@@ -29,8 +25,6 @@ export function SidebarRight({
     selectedFieldData,
     updateField,
     commitFieldChanges,
-    aiSuggestions,
-    applySuggestion,
     fields,
     isOpen = false,
     onClose,
@@ -84,37 +78,6 @@ export function SidebarRight({
                 placeholder='"Enter label..."'
               />
             </div>
-
-            {/* AI Suggestions */}
-            {aiSuggestions.length > 0 && (
-              <motion.div 
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="bg-primary/5 border border-primary/30 p-3"
-              >
-                <div className="flex items-center gap-2 mb-3">
-                  <Lightbulb className="w-4 h-4 text-primary animate-pulse" />
-                  <span className="text-mono text-[11px] text-primary font-bold">AI_SUGGESTIONS</span>
-                </div>
-                <div className="space-y-2">
-                  {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
-                  {aiSuggestions.map((s: any, i: number) => (
-                    <motion.button
-                      key={i}
-                      whileHover={{ x: 2 }}
-                      onClick={() => applySuggestion(s)}
-                      className="w-full text-left p-2 bg-card border border-primary/20 hover:border-primary transition-colors"
-                    >
-                      <div className="flex items-center justify-between mb-1">
-                        <span className="text-mono text-xs text-cyan-400 capitalize">{s.fieldType}</span>
-                        <span className="text-mono text-[10px] text-primary">{Math.round(s.confidence * 100)}%</span>
-                      </div>
-                      <div className="text-mono text-[10px] text-muted-foreground">"{s.placeholder}"</div>
-                    </motion.button>
-                  ))}
-                </div>
-              </motion.div>
-            )}
 
             {/* Field Type */}
             <div className="space-y-2">

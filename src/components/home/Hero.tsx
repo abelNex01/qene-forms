@@ -28,18 +28,18 @@ export function Hero() {
 
   const handleDocsClick = () => {
     setActiveData({
-      title: "Qene Forms Documentation", // Updated title
+      title: "Qene Forms Documentation",
       content: (
         <div className="space-y-8 font-mono text-sm leading-relaxed max-w-3xl">
           {/* Header Section */}
           <div className="border-b border-border/40 pb-6">
             <h1 className="text-3xl font-bold text-primary mb-3 tracking-tight">Qene Forms</h1>
             <p className="text-muted-foreground text-base">
-              The AI-Native Form Builder. Generate, Refine, Export.
+              The Professional Form Builder. Drag, Drop, Export.
             </p>
           </div>
 
-          {/* 1. Dashboard & Usage (New First Instruction) */}
+          {/* 1. Dashboard & Usage */}
           <section className="space-y-4">
             <h2 className="text-xl font-bold text-foreground flex items-center gap-2">
               <span className="text-primary">01.</span> Dashboard & Usage
@@ -54,19 +54,19 @@ export function Hero() {
               </p>
               <ul className="list-disc pl-5 space-y-2">
                 <li>
-                  <strong className="text-white">AI Generation:</strong> Type a natural language prompt (e.g., "Contact form with phone validation") into the text bar. The local AI will construct the form instantly.
+                  <strong className="text-white">Drag & Drop Builder:</strong> Build your form by dragging input fields (Text, Email, Checkbox, Select) from the left sidebar onto the canvas.
                 </li>
                 <li>
-                  <strong className="text-white">Drag & Drop Builder:</strong> Manually refine your form by dragging input fields (Text, Checkbox, Select) from the left sidebar onto the canvas.
+                  <strong className="text-white">Field Configuration:</strong> Select any field to customize its label, placeholder, validation rules, and conditional logic in the right sidebar.
                 </li>
                 <li>
-                  <strong className="text-white">Real-time Preview:</strong> See your form evolve as you mix AI generation with manual customization.
+                  <strong className="text-white">Real-time Preview:</strong> See exactly how your form will look as you build it with instant visual feedback.
                 </li>
               </ul>
             </div>
           </section>
 
-          {/* 2. Installation (Renumbered) */}
+          {/* 2. Installation */}
           <section className="space-y-4">
             <h2 className="text-xl font-bold text-foreground flex items-center gap-2">
               <span className="text-primary">02.</span> Installation (Package)
@@ -85,87 +85,74 @@ export function Hero() {
             </div>
           </section>
 
-          {/* 3. Core Workflow (Renumbered) */}
+          {/* 3. Core Workflow */}
           <section className="space-y-4">
             <h2 className="text-xl font-bold text-foreground flex items-center gap-2">
-              <span className="text-primary">03.</span> The Generation Process
+              <span className="text-primary">03.</span> The Building Process
             </h2>
             <div className="grid md:grid-cols-3 gap-4">
               <div className="bg-muted/10 p-4 rounded border border-white/5">
-                <h3 className="text-white font-bold mb-2">1. Prompt</h3>
+                <h3 className="text-white font-bold mb-2">1. Add Fields</h3>
                 <p className="text-muted-foreground text-xs">
-                  Describe your form in natural language.
-                  <br />
-                  <span className="text-primary italic">
-                    "Login form with email, password, and remember me."
-                  </span>
+                  Click or drag field types from the sidebar to add them to your form canvas.
                 </p>
               </div>
               <div className="bg-muted/10 p-4 rounded border border-white/5">
-                <h3 className="text-white font-bold mb-2">2. Refine</h3>
+                <h3 className="text-white font-bold mb-2">2. Configure</h3>
                 <p className="text-muted-foreground text-xs">
-                  Use the drag-and-drop sidebar to precise control, reorder items, or
-                  adjust validation rules manually.
+                  Customize each field's properties - labels, placeholders, validation rules, and conditional visibility.
                 </p>
               </div>
               <div className="bg-muted/10 p-4 rounded border border-white/5">
                 <h3 className="text-white font-bold mb-2">3. Export</h3>
                 <p className="text-muted-foreground text-xs">
-                  Generate production-ready code for React, Vue, Svelte, or HTML/CSS. 100%
-                  type-safe.
+                  Generate production-ready code for React, Vue, Svelte, Angular, or HTML. 100% type-safe.
                 </p>
               </div>
             </div>
           </section>
 
-          {/* 4. Features Detail (Renumbered) */}
+          {/* 4. Features Detail */}
           <section className="space-y-4">
             <h2 className="text-xl font-bold text-foreground flex items-center gap-2">
-              <span className="text-primary">04.</span> Advanced Features
+              <span className="text-primary">04.</span> Key Features
             </h2>
             <ul className="grid md:grid-cols-2 gap-3 text-sm text-gray-300">
               <li className="flex items-start gap-2">
                 <span className="text-primary">✓</span>
                 <span>
-                  <strong>Local AI Engine:</strong> TensorFlow.js runs entirely in your
-                  browser. No data leaves your machine.
+                  <strong>Intuitive Interface:</strong> Clean, developer-focused UI with drag-and-drop simplicity.
                 </span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-primary">✓</span>
                 <span>
-                  <strong>Multi-Framework:</strong> Native support for React (Hook Form),
-                  Vue 3, Svelte, and raw HTML.
+                  <strong>Multi-Framework:</strong> Native support for React (Hook Form), Vue 3, Svelte, Angular, and raw HTML.
                 </span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-primary">✓</span>
                 <span>
-                  <strong>Tailwind CSS 4:</strong> Components are styled with the latest
-                  Atomic CSS engine.
+                  <strong>Tailwind CSS 4:</strong> Components are styled with the latest Atomic CSS engine.
                 </span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-primary">✓</span>
                 <span>
-                  <strong>Zod Validation:</strong> Automatic schema generation for robust
-                  form handling.
+                  <strong>Zod Validation:</strong> Automatic schema generation for robust form handling.
                 </span>
               </li>
             </ul>
           </section>
 
-          {/* 5. Architecture (Renumbered) */}
+          {/* 5. Architecture */}
           <section className="space-y-4">
             <h2 className="text-xl font-bold text-foreground flex items-center gap-2">
               <span className="text-primary">05.</span> Technical Architecture
             </h2>
             <div className="prose prose-invert prose-sm text-muted-foreground">
               <p>
-                Qene Forms utilizes <strong>TensorFlow.js</strong> with the Universal
-                Sentence Encoder to map natural language intents to concrete form field
-                definitions. The <strong>CodeGenerator</strong> transpiles this definition
-                into idiomatic code for your chosen framework.
+                Qene Forms uses a modular component architecture built with React 19 and TypeScript. The <strong>CodeGenerator</strong> transpiles your form definition into idiomatic code for your chosen framework with proper validation and accessibility built in.
               </p>
             </div>
           </section>
@@ -230,7 +217,7 @@ export function Hero() {
               className="text-body md:text-body-lg text-muted-foreground max-w-xl border-l-2 border-primary/30 pl-6 mt-12 mb-12"
             >
               <DecryptedText 
-                text="The intelligent form generation engine. Transform natural language into complex, validated, and type-safe forms running entirely in your browser." 
+                text="The professional drag-and-drop form builder. Create complex, validated, and type-safe forms with an intuitive visual interface and export to any framework." 
                 animateOn="view" 
                 speed={30} 
                 maxIterations={8} 
@@ -337,10 +324,10 @@ export function Hero() {
                 className="absolute top-[42%] left-[5%] bg-muted/30 border border-border p-3 backdrop-blur-sm rotate-[-4deg] z-20"
               >
                 <div className="flex justify-between text-[10px] font-mono text-muted-foreground mb-1 gap-6">
-                  <DecryptedText text="AI_MODEL" animateOn="view" speed={50} maxIterations={8} />
-                  <span className="text-success"><DecryptedText text="CONNECTED" animateOn="view" speed={50} maxIterations={8} /></span>
+                  <DecryptedText text="DRAG_DROP" animateOn="view" speed={50} maxIterations={8} />
+                  <span className="text-success"><DecryptedText text="ACTIVE" animateOn="view" speed={50} maxIterations={8} /></span>
                 </div>
-                <div className="font-mono text-xs text-primary"><DecryptedText text="GENERATING_UI..." animateOn="view" speed={50} maxIterations={8} /></div>
+                <div className="font-mono text-xs text-primary"><DecryptedText text="BUILDING_FORM..." animateOn="view" speed={50} maxIterations={8} /></div>
               </motion.div>
 
               <motion.div

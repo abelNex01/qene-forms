@@ -89,7 +89,6 @@ interface CanvasProps {
     previewMode: boolean;
     cloneField: (id: string) => void;
     deleteField: (id: string) => void;
-    isProcessing?: boolean;
     isCollapsible?: boolean;
     addField: (type: string) => void;
 }
@@ -107,7 +106,6 @@ export function Canvas({
     previewMode,
     cloneField,
     deleteField,
-    isProcessing = false,
     isCollapsible = false,
     addField
 }: CanvasProps) {
@@ -401,10 +399,8 @@ export function Canvas({
       >
         <div className="text-mono text-[10px] text-muted-foreground mb-1">SCHEMA_STATUS</div>
         <div className="flex items-center gap-2">
-          <div className={`w-2 h-2 ${isProcessing ? 'bg-primary animate-spin' : 'bg-success animate-pulse'}`} />
-          <span className={`text-mono text-xs ${isProcessing ? 'text-primary' : 'text-success'}`}>
-            {isProcessing ? 'COMPILING...' : 'VALID'}
-          </span>
+          <div className="w-2 h-2 bg-success animate-pulse" />
+          <span className="text-mono text-xs text-success">VALID</span>
         </div>
       </motion.div>
     </div>

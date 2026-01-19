@@ -139,21 +139,7 @@ export default function AIEditor() {
                         onClose={() => setLeftSidebarOpen(false)}
                         isCollapsible={isCollapsibleMode}
                         onGenerate={async (prompt) => {
-                            try {
-                                const { generateFormFromPrompt } = await import('../../ai/generator');
-                                const generatedFields = await generateFormFromPrompt(prompt);
-                                console.log('[AI Editor] Received generated fields:', generatedFields);
-                                if (generatedFields.length > 0) {
-                                   setFields(generatedFields);
-                                   saveToHistory(generatedFields);
-
-                                   if (isCollapsibleMode) setLeftSidebarOpen(false);
-                                } else {
-                                    console.warn('[AI Editor] No fields generated');
-                                }
-                            } catch (error) {
-                                console.error("AI Generation failed", error);
-                            }
+                             console.warn("AI Generation is temporarily unavailable.");
                         }}
                     />
                 )}
@@ -189,21 +175,7 @@ export default function AIEditor() {
                              onClose={() => setLeftSidebarOpen(false)}
                              isCollapsible={isCollapsibleMode}
                              onGenerate={async (prompt) => {
-                                 try {
-                                     const { generateFormFromPrompt } = await import('../../ai/generator');
-                                     const generatedFields = await generateFormFromPrompt(prompt);
-                                     console.log('[AI Editor] Received generated fields:', generatedFields);
-                                     if (generatedFields.length > 0) {
-                                        setFields(generatedFields);
-                                        saveToHistory(generatedFields);
- 
-                                        if (isCollapsibleMode) setLeftSidebarOpen(false);
-                                     } else {
-                                         console.warn('[AI Editor] No fields generated');
-                                     }
-                                 } catch (error) {
-                                     console.error("AI Generation failed", error);
-                                 }
+                                 console.warn("AI Generation is temporarily unavailable.");
                              }}
                          />
                 )}
