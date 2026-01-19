@@ -24,11 +24,13 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-background text-foreground selection:bg-primary selection:text-primary-foreground">
       <Navbar />
-      <Hero />
-      <Installation />
-      <Integrations />
+      <div style={{ zoom: 0.85 }} className="w-full">
+        <Hero />
+        <Installation />
+        <Integrations />
         <Features />
-      <Footer />
+        <Footer />
+      </div>
     </div>
   );
 }

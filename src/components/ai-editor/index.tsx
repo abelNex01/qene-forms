@@ -128,42 +128,85 @@ export default function AIEditor() {
                         }}
                     />
                 )}
+                {/* Mobile Sidebar - Rendered here to be above backdrop (z-50 > z-30) */}
+                {isCollapsibleMode && leftSidebarOpen && (
+                    <SidebarLeft
+                        addField={(type) => {
+                            addField(type);
+                            if (isCollapsibleMode) setLeftSidebarOpen(false);
+                        }}
+                        isOpen={leftSidebarOpen}
+                        onClose={() => setLeftSidebarOpen(false)}
+                        isCollapsible={isCollapsibleMode}
+                        onGenerate={async (prompt) => {
+                            try {
+                                const { generateFormFromPrompt } = await import('../../ai/generator');
+                                const generatedFields = await generateFormFromPrompt(prompt);
+                                console.log('[AI Editor] Received generated fields:', generatedFields);
+                                if (generatedFields.length > 0) {
+                                   setFields(generatedFields);
+                                   saveToHistory(generatedFields);
+
+                                   if (isCollapsibleMode) setLeftSidebarOpen(false);
+                                } else {
+                                    console.warn('[AI Editor] No fields generated');
+                                }
+                            } catch (error) {
+                                console.error("AI Generation failed", error);
+                            }
+                        }}
+                    />
+                )}
+                {/* Mobile Right Sidebar - Above backdrop */}
+                {isCollapsibleMode && rightSidebarOpen && (
+                        <SidebarRight
+                            selectedField={selectedField}
+                            setSelectedField={setSelectedField}
+                            selectedFieldData={fields.find(f => f.id === selectedField)}
+                            updateField={updateField}
+                            commitFieldChanges={commitFieldChanges}
+                            aiSuggestions={aiSuggestions}
+                            applySuggestion={applySuggestion}
+                            fields={fields}
+                            isOpen={rightSidebarOpen}
+                            onClose={() => setRightSidebarOpen(false)}
+                            isCollapsible={isCollapsibleMode}
+                        />
+                )}
             </AnimatePresence>
 
 
             <div className="flex pt-16 relative z-10" style={{ height: 'calc(100vh - 4rem)' }}>
 
-                <AnimatePresence>
-                    {(!isCollapsibleMode || leftSidebarOpen) && (
-                        <SidebarLeft
-                            addField={(type) => {
-                                addField(type);
-                                if (isCollapsibleMode) setLeftSidebarOpen(false);
-                            }}
-                            isOpen={leftSidebarOpen}
-                            onClose={() => setLeftSidebarOpen(false)}
-                            isCollapsible={isCollapsibleMode}
-                            onGenerate={async (prompt) => {
-                                try {
-
-                                    const { generateFormFromPrompt } = await import('../../ai/generator');
-                                    const generatedFields = await generateFormFromPrompt(prompt);
-                                    console.log('[AI Editor] Received generated fields:', generatedFields);
-                                    if (generatedFields.length > 0) {
-                                       setFields(generatedFields);
-                                       saveToHistory(generatedFields);
-
-                                       if (isCollapsibleMode) setLeftSidebarOpen(false);
-                                    } else {
-                                        console.warn('[AI Editor] No fields generated');
-                                    }
-                                } catch (error) {
-                                    console.error("AI Generation failed", error);
-                                }
-                            }}
-                        />
-                    )}
-                </AnimatePresence>
+                {/* Desktop Sidebar - Rendered in flow */}
+                {!isCollapsibleMode && (
+                         <SidebarLeft
+                             addField={(type) => {
+                                 addField(type);
+                                 if (isCollapsibleMode) setLeftSidebarOpen(false);
+                             }}
+                             isOpen={leftSidebarOpen}
+                             onClose={() => setLeftSidebarOpen(false)}
+                             isCollapsible={isCollapsibleMode}
+                             onGenerate={async (prompt) => {
+                                 try {
+                                     const { generateFormFromPrompt } = await import('../../ai/generator');
+                                     const generatedFields = await generateFormFromPrompt(prompt);
+                                     console.log('[AI Editor] Received generated fields:', generatedFields);
+                                     if (generatedFields.length > 0) {
+                                        setFields(generatedFields);
+                                        saveToHistory(generatedFields);
+ 
+                                        if (isCollapsibleMode) setLeftSidebarOpen(false);
+                                     } else {
+                                         console.warn('[AI Editor] No fields generated');
+                                     }
+                                 } catch (error) {
+                                     console.error("AI Generation failed", error);
+                                 }
+                             }}
+                         />
+                )}
                 
 
                 <div className="flex-1 min-w-0" onClick={handleCanvasClick}>
@@ -187,8 +230,9 @@ export default function AIEditor() {
                 </div>
 
 
+                {/* Desktop Right Sidebar */}
                 <AnimatePresence>
-                    {(!isCollapsibleMode || rightSidebarOpen) && (
+                    {(!isCollapsibleMode || rightSidebarOpen) && !isCollapsibleMode && (
                         <SidebarRight
                             selectedField={selectedField}
                             setSelectedField={setSelectedField}

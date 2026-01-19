@@ -127,7 +127,19 @@ export function Canvas({
   const handleDrop = (e: React.DragEvent) => {
     e.preventDefault();
     setIsDraggingOver(false);
-    const type = e.dataTransfer.getData('text/plain');
+    
+    // Try to get data from dataTransfer
+    let type = e.dataTransfer.getData('text/plain');
+    
+    // Fallback for some mobile browsers/polyfill edge cases
+    if (!type && (e as any).dataTransfer?.types?.includes('text/plain')) {
+        try {
+            type = e.dataTransfer.getData('text/plain');
+        } catch (err) {
+            console.warn('Failed to get drag data', err);
+        }
+    }
+
     if (type) {
       addField(type);
     }

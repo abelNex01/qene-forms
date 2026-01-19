@@ -186,7 +186,7 @@ export function Hero() {
   };
 
   return (
-    <section id="hero" className="min-h-screen-dynamic flex flex-col justify-center relative overflow-hidden grid-pattern pt-20 md:pt-0">
+    <section id="hero" className="min-h-[85vh] flex flex-col justify-center relative overflow-hidden grid-pattern pt-20 md:pt-0">
       <div className="container-studio relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Column: Content */}
@@ -205,7 +205,7 @@ export function Hero() {
             </motion.div>
             
             <div className="flex flex-col gap-6 relative">
-                 <div className="absolute -left-12 top-0 bottom-0 w-[1px] bg-border hidden lg:block" />
+
 
                 {/* Main Headline */}
                 <div>
@@ -260,7 +260,7 @@ export function Hero() {
                         <img 
                             src={tech.logo} 
                             alt={tech.name} 
-                            className={`w-7 h-7 md:w-8 md:h-8 grayscale group-hover:grayscale-0 transition-all opacity-60 group-hover:opacity-100 group-hover:scale-110 ${tech.invert ? "invert brightness-200" : ""}`} 
+                            className={`w-6 h-6 md:w-6 md:h-6 grayscale group-hover:grayscale-0 transition-all opacity-60 group-hover:opacity-100 group-hover:scale-110 ${tech.invert ? "invert brightness-200" : ""}`} 
                         />
                     </div>
                 ))}
@@ -302,7 +302,7 @@ export function Hero() {
             initial={{ opacity: 0, x: 40 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1, delay: 0.5 }}
-            className="relative hidden lg:block"
+            className="relative hidden lg:block max-w-[85%] mx-auto"
           >
              <div className="relative z-10">
                  <img 
@@ -358,7 +358,7 @@ export function Hero() {
 
       {/* Decorative Elements */}
       <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-primary/5 to-transparent pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-full h-[1px] bg-border" />
+
       
       {/* Scroll indicator */}
       <motion.div

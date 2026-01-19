@@ -70,14 +70,20 @@ export function SidebarLeft({
           {FIELD_TYPES.map(({ type, label, icon: Icon }, index) => (
             <button
               key={type}
-              onClick={() => addField(type)}
-              draggable
+              onClick={() => {
+                addField(type);
+                // Auto-close sidebar on mobile/tablet after selection
+                if (isCollapsible && onClose) {
+                  onClose();
+                }
+              }}
+              draggable="true"
               onDragStart={(e) => {
                 e.dataTransfer.setData('text/plain', type);
                 e.dataTransfer.effectAllowed = 'copy';
               }}
               type="button"
-              className="w-full flex items-center gap-2 sm:gap-3 px-2 py-2.5 sm:py-2 text-left hover:bg-muted/50 transition-all group border-l-2 border-transparent hover:border-primary touch-manipulation hover:translate-x-1 active:scale-95 cursor-grab active:cursor-grabbing"
+              className="w-full flex items-center gap-2 sm:gap-3 px-2 py-2.5 sm:py-2 text-left hover:bg-muted/50 transition-all group border-l-2 border-transparent hover:border-primary hover:translate-x-1 active:scale-95 cursor-grab active:cursor-grabbing"
             >
               {/* Line number */}
               <span className="text-mono text-[10px] text-muted-foreground w-4 text-right opacity-50 group-hover:opacity-100">
@@ -152,7 +158,7 @@ export function SidebarLeft({
         animate={{ x: 0, opacity: 1 }}
         exit={{ x: -300, opacity: 0 }}
         transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-        className="fixed left-0 top-16 bottom-0 w-72 max-w-[85vw] bg-card border-r border-border overflow-y-auto z-40"
+        className="fixed left-0 top-16 bottom-0 w-72 max-w-[85vw] bg-card border-r border-border overflow-y-auto z-50"
       >
         {sidebarContent}
       </motion.div>

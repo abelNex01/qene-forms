@@ -372,7 +372,7 @@ export function SidebarRight({
         animate={{ x: 0, opacity: 1 }}
         exit={{ x: 300, opacity: 0 }}
         transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-        className="fixed right-0 top-16 bottom-0 w-80 max-w-[90vw] bg-card border-l border-border overflow-y-auto z-40"
+        className="fixed right-0 top-16 bottom-0 w-80 max-w-[90vw] bg-card border-l border-border overflow-y-auto z-50"
       >
         {sidebarContent}
       </motion.div>
