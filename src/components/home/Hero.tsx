@@ -186,7 +186,7 @@ export function Hero() {
   };
 
   return (
-    <section id="hero" className="min-h-[85vh] flex flex-col justify-center relative overflow-hidden grid-pattern pt-20 md:pt-0">
+    <section id="hero" className="min-h-[85vh] flex flex-col justify-center relative overflow-hidden grid-pattern pt-20 md:pt-14">
       <div className="container-studio relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Column: Content */}
@@ -275,7 +275,7 @@ export function Hero() {
             >
                 <MagneticButton
                 onClick={() => setLocation("/dashboard")}
-                className="gap-3 h-14 bg-primary text-background hover:bg-primary/90 hover-glow-accent px-8 w-full sm:w-auto justify-center"
+                className="gap-3 h-14 bg-primary text-background hover:bg-primary/90  px-8 w-full sm:w-auto justify-center"
                 size="lg"
                 >
                 <PenTool className="w-5 h-5" />
@@ -300,22 +300,40 @@ export function Hero() {
           {/* Right Column: Image */}
           <motion.div
             initial={{ opacity: 0, x: 40 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1, delay: 0.5 }}
-            className="relative hidden lg:block max-w-[85%] mx-auto"
+            animate={{ 
+              opacity: 1, 
+              x: 0,
+              y: [0, -10, 0] // Gentle floating effect
+            }}
+            transition={{ 
+              opacity: { duration: 1, delay: 0.5 },
+              x: { duration: 1, delay: 0.5 },
+              y: { duration: 6, repeat: Infinity, ease: "easeInOut" } // Continuous loop
+            }}
+            className="relative hidden lg:block max-w-[92%] mx-auto"
           >
              <div className="relative z-10">
                  <img 
                     src={emailUiImage} 
                     alt="Qene Forms Interface" 
-                    className="w-full rotate-6 h-auto rounded-lg shadow-[0_0_50px_hsl(var(--primary)/0.25)]"
+                    className="w-full rotate-6 h-auto rounded-lg shadow-[0_0_50px_hsl(var(--primary)/0.25)] select-none pointer-events-none"
+                    draggable={false}
+                    onContextMenu={(e) => e.preventDefault()}
                  />
              </div>
 
               <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.8, delay: 1.0 }}
+                initial={{ opacity: 0, scale: 0.9, y: 0 }}
+                animate={{ 
+                  opacity: 1, 
+                  scale: 1,
+                  y: [0, -15, 0] 
+                }}
+                transition={{ 
+                  opacity: { duration: 0.8, delay: 1.0 },
+                  scale: { duration: 0.8, delay: 1.0 },
+                  y: { duration: 4, repeat: Infinity, ease: "easeInOut", delay: 0 } 
+                }}
                 className="absolute top-[42%] left-[5%] bg-muted/30 border border-border p-3 backdrop-blur-sm rotate-[-4deg] z-20"
               >
                 <div className="flex justify-between text-[10px] font-mono text-muted-foreground mb-1 gap-6">
@@ -326,9 +344,17 @@ export function Hero() {
               </motion.div>
 
               <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.8, delay: 1.3 }}
+                initial={{ opacity: 0, scale: 0.9, y: 0 }}
+                animate={{ 
+                  opacity: 1, 
+                  scale: 1,
+                  y: [0, -12, 0]
+                }}
+                transition={{ 
+                  opacity: { duration: 0.8, delay: 1.3 },
+                  scale: { duration: 0.8, delay: 1.3 },
+                  y: { duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 } 
+                }}
                 className="absolute bottom-[19%] right-[18%] bg-muted/30 border border-border p-4 backdrop-blur-sm rotate-[3deg] z-20"
               >
                 <div className="flex justify-between text-xs font-mono text-muted-foreground mb-2 gap-8">
@@ -339,9 +365,17 @@ export function Hero() {
               </motion.div>
 
               <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.8, delay: 1.6 }}
+                initial={{ opacity: 0, scale: 0.9, y: 0 }}
+                animate={{ 
+                  opacity: 1, 
+                  scale: 1,
+                  y: [0, -18, 0]
+                }}
+                transition={{ 
+                  opacity: { duration: 0.8, delay: 1.6 },
+                  scale: { duration: 0.8, delay: 1.6 },
+                  y: { duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 } 
+                }}
                 className="absolute top-[18%] right-[2%] bg-muted/30 border border-border p-4 backdrop-blur-sm w-fit max-w-[280px] rotate-[-2deg] z-20"
               >
                  <div className="flex justify-between text-xs font-mono text-muted-foreground mb-2 gap-8">

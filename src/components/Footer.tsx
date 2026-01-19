@@ -269,7 +269,7 @@ export function Footer() {
                     onClick={(e) => handleLinkClick(e, link)}
                     className="text-sm text-muted-foreground hover:text-foreground transition-colors hover:translate-x-1 inline-block duration-200"
                   >
-                    {link.label}
+                    <DecryptedText text={link.label} animateOn="view" speed={50} maxIterations={5} />
                   </a>
                 </li>
               ))}
@@ -336,7 +336,7 @@ export function Footer() {
         <div className="border-t border-border pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex flex-col md:flex-row items-center gap-4 md:gap-8">
              <p className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider">
-               © {new Date().getFullYear()} Qene Forms. All Rights Reserved.
+               © {new Date().getFullYear()} <DecryptedText text="Qene Forms. All Rights Reserved." animateOn="view" speed={50} />
              </p>
              <div className="flex gap-6">
                 {footerLinksData.legal.map(link => (
@@ -346,7 +346,7 @@ export function Footer() {
                         onClick={(e) => handleLinkClick(e, link)}
                         className="text-[10px] font-mono text-muted-foreground hover:text-primary transition-colors uppercase"
                     >
-                        {link.label}
+                        <DecryptedText text={link.label} animateOn="view" speed={50} />
                     </a>
                 ))}
              </div>

@@ -80,20 +80,20 @@ export function Installation() {
                 </h2>
             </div>
             <p className="text-body text-muted-foreground mb-8">
-                Install the Qene Forms library to easily integrate powerful form building capabilities directly into your React applications.
+                <DecryptedText text="Install the Qene Forms library to easily integrate powerful form building capabilities directly into your React applications." animateOn="view" speed={20} maxIterations={10} />
             </p>
             <div className="flex flex-col gap-4 border-l-2 border-primary/20 pl-6">
                 <div className="flex items-center gap-3">
                     <div className="w-1.5 h-1.5 bg-primary rounded-full" />
-                    <span className="text-sm font-mono text-muted-foreground">MIT License (Core)</span>
+                    <span className="text-sm font-mono text-muted-foreground"><DecryptedText text="MIT License (Core)" animateOn="view" speed={40} /></span>
                 </div>
                 <div className="flex items-center gap-3">
                     <div className="w-1.5 h-1.5 bg-primary rounded-full" />
-                    <span className="text-sm font-mono text-muted-foreground">Latest: v1.0.0</span>
+                    <span className="text-sm font-mono text-muted-foreground"><DecryptedText text="Latest: v1.0.0" animateOn="view" speed={40} /></span>
                 </div>
                 <div className="flex items-center gap-3">
                     <div className="w-1.5 h-1.5 bg-primary rounded-full" />
-                    <span className="text-sm font-mono text-muted-foreground">React & Next.js Compatible</span>
+                    <span className="text-sm font-mono text-muted-foreground"><DecryptedText text="React & Next.js Compatible" animateOn="view" speed={40} /></span>
                 </div>
             </div>
           </div>

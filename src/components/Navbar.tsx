@@ -56,7 +56,7 @@ export function Navbar() {
 
   return (
     <>
-    <header className="fixed top-2 left-0 right-0 z-50 flex justify-center pointer-events-none px-4">
+    <header className="fixed top-2 left-0 right-0 z-50 flex justify-center pointer-events-none px-4 scale-90 origin-top">
       <div 
         className="pointer-events-auto flex items-center justify-between gap-8 bg-card/90 backdrop-blur-xl border border-border px-4 py-2 neo-border w-full max-w-2xl"
       >

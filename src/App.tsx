@@ -9,6 +9,9 @@ import { ThemeProvider } from "@/components/ThemeProvider";
 import Home from "@/pages/home";
 import NotFound from "@/pages/not-found";
 
+import { InitialLoader } from "@/components/InitialLoader";
+import { CookieConsent } from "@/components/CookieConsent";
+
 // Lazy load Dashboard (includes heavy AI editor and TensorFlow.js)
 const Dashboard = lazy(() => import("@/pages/Dashboard"));
 
@@ -37,6 +40,8 @@ function App() {
       <ThemeProvider>
         <TooltipProvider>
           <SmoothScrollProvider>
+            <InitialLoader />
+            <CookieConsent />
             <Toaster />
             <Router />
           </SmoothScrollProvider>

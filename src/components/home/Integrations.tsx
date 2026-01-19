@@ -119,8 +119,12 @@ export function Integrations() {
                         </h3>
                         
                         <p className="text-body text-muted-foreground mb-8 max-w-md">
-                            Qene Form Builder isn't just a walled garden. It's a bridge to your existing infrastructure. 
-                            We support every major modern framework and tooling standard out of the box.
+                            <DecryptedText 
+                                text="Qene Form Builder isn't just a walled garden. It's a bridge to your existing infrastructure. We support every major modern framework and tooling standard out of the box." 
+                                animateOn="view" 
+                                speed={20}
+                                maxIterations={10}
+                            />
                         </p>
 
                         <div className="p-6 bg-muted/20 border border-border rounded-sm backdrop-blur-sm">
@@ -158,17 +162,21 @@ export function Integrations() {
                                 whileInView={{ opacity: 1, scale: 1 }}
                                 viewport={{ once: true }}
                                 transition={{ delay: index * 0.1, duration: 0.4 }}
-                                className={`p-6 border bg-background/50 hover:bg-background transition-all group cursor-default ${item.border}`}
+                                className="group cursor-default"
                             >
-                                <div className={`w-10 h-10 ${item.bg} flex items-center justify-center rounded-sm mb-4 group-hover:scale-110 transition-transform`}>
+                                <div className={`w-10 h-10 flex items-center justify-center rounded-sm mb-4 group-hover:scale-110 transition-transform`}>
                                     <img 
                                         src={item.logo} 
                                         alt={item.name} 
-                                        className={`w-6 h-6 grayscale group-hover:grayscale-0 transition-all opacity-80 group-hover:opacity-100 ${item.invert ? "invert brightness-200" : ""}`} 
+                                        className={`w-8 h-8 grayscale group-hover:grayscale-0 transition-all opacity-80 group-hover:opacity-100 ${item.invert ? "invert brightness-200" : ""}`} 
                                     />
                                 </div>
-                                <h4 className={`text-lg font-bold mb-1 ${item.color} font-mono`}>{item.name}</h4>
-                                <p className="text-xs text-muted-foreground">{item.desc}</p>
+                                <h4 className={`text-lg font-bold mb-1 ${item.color} font-mono`}>
+                                    <DecryptedText text={item.name} animateOn="view" speed={50} />
+                                </h4>
+                                <p className="text-xs text-muted-foreground">
+                                    <DecryptedText text={item.desc} animateOn="view" speed={30} maxIterations={5} />
+                                </p>
                             </motion.div>
                         ))}
                     </div>

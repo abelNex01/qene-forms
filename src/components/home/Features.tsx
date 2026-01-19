@@ -44,7 +44,12 @@ export function Features() {
               </h2>
           </div>
           <p className="text-body-lg text-muted-foreground leading-relaxed">
-            Qene Forms combines the speed of AI generation with the precision of manual control.
+            <DecryptedText 
+              text="Qene Forms combines the speed of AI generation with the precision of manual control."
+              animateOn="view" 
+              speed={20}
+              maxIterations={10}
+            />
           </p>
         </div>
 
@@ -62,10 +67,10 @@ export function Features() {
                 <feature.icon className="w-6 h-6" />
               </div>
               <h3 className="text-xl font-bold mb-3 text-foreground font-mono uppercase">
-                {feature.title}
+                <DecryptedText text={feature.title} animateOn="view" speed={50} />
               </h3>
               <p className="text-muted-foreground leading-relaxed">
-                {feature.description}
+                <DecryptedText text={feature.description} animateOn="view" speed={30} maxIterations={5} />
               </p>
             </motion.div>
           ))}
