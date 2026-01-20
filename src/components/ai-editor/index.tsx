@@ -162,7 +162,7 @@ export default function AIEditor() {
             </AnimatePresence>
 
 
-            <div className="flex pt-16 relative z-10" style={{ height: 'calc(100vh - 4rem)' }}>
+            <div className="flex pt-16 relative z-10" style={{ height: 'calc((100vh - 4rem) / 0.85)', zoom: '0.85' }}>
 
                 {/* Desktop Sidebar - Rendered in flow */}
                 {!isCollapsibleMode && (

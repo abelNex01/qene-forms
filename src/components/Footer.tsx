@@ -25,6 +25,15 @@ export function Footer() {
 
   const [terminalOpen, setTerminalOpen] = useState(false);
   const [activeData, setActiveData] = useState({ title: "", content: <></> });
+  const [newsletterSubmitted, setNewsletterSubmitted] = useState(false);
+  const [email, setEmail] = useState("");
+
+  const handleNewsletterSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (email) {
+      setNewsletterSubmitted(true);
+    }
+  };
 
   const handleLinkClick = (e: React.MouseEvent, link: any) => {
       e.preventDefault();
@@ -301,32 +310,60 @@ export function Footer() {
               <Activity className="w-3 h-3" /> 
               <DecryptedText text="Newsletter" animateOn="view" speed={50} maxIterations={8} />
             </h4>
-            <p className="text-xs text-muted-foreground mb-4">
-              <DecryptedText 
-                text="Join our developer network. Get the latest templates, tutorials, and updates delivered to your inbox." 
-                animateOn="view" 
-                speed={20} 
-                maxIterations={6} 
-              />
-            </p>
-            <div className="flex gap-2">
-              <Input 
-                placeholder="ENTER_EMAIL_ADDRESS" 
-                className="bg-background border-border font-mono text-xs rounded-none h-10 focus:ring-1 focus:ring-primary" 
-              />
-              <Button className="h-10 rounded-none w-12 p-0 bg-primary hover:bg-primary/90">
-                <Mail className="w-4 h-4" />
-              </Button>
-            </div>
+            {newsletterSubmitted ? (
+               <motion.div 
+                 initial={{ opacity: 0, scale: 0.95 }}
+                 animate={{ opacity: 1, scale: 1 }}
+                 className="bg-primary/10 border border-primary/20 p-4 rounded-none"
+               >
+                 <p className="text-primary text-xs font-mono font-bold uppercase tracking-wider mb-1">
+                   Subscription Active
+                 </p>
+                 <p className="text-[10px] text-muted-foreground leading-relaxed">
+                   We will update you about new features, templates and security patches as they deploy.
+                 </p>
+               </motion.div>
+            ) : (
+              <>
+                <p className="text-xs text-muted-foreground mb-4">
+                  <DecryptedText 
+                    text="Join our developer network. Get the latest templates, tutorials, and updates delivered to your inbox." 
+                    animateOn="view" 
+                    speed={20} 
+                    maxIterations={6} 
+                  />
+                </p>
+                <form onSubmit={handleNewsletterSubmit} className="flex gap-2">
+                  <Input 
+                    type="email"
+                    required
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="ENTER_EMAIL_ADDRESS" 
+                    className="bg-background border-border font-mono text-xs rounded-none h-10 focus:ring-1 focus:ring-primary" 
+                  />
+                  <Button type="submit" className="h-10 rounded-none w-12 p-0 bg-primary hover:bg-primary/90">
+                    <Mail className="w-4 h-4" />
+                  </Button>
+                </form>
+              </>
+            )}
             <div className="mt-6 flex gap-4">
-                <a href="#" className="w-8 h-8 flex items-center justify-center border border-border text-muted-foreground hover:text-foreground hover:border-primary transition-all bg-background/50 hover:bg-primary/5">
-                    <Github className="w-4 h-4" />
+                <a 
+                    href="https://github.com" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="w-8 h-8 flex items-center justify-center border border-border text-primary hover:border-primary transition-all bg-background/50 hover:bg-primary/5"
+                >
+                    <Github className="w-4 h-4 fill-primary" strokeWidth={0} />
                 </a>
-                <a href="#" className="w-8 h-8 flex items-center justify-center border border-border text-muted-foreground hover:text-foreground hover:border-primary transition-all bg-background/50 hover:bg-primary/5">
-                    <Twitter className="w-4 h-4" />
-                </a>
-                <a href="#" className="w-8 h-8 flex items-center justify-center border border-border text-muted-foreground hover:text-foreground hover:border-primary transition-all bg-background/50 hover:bg-primary/5">
-                    <Linkedin className="w-4 h-4" />
+                <a 
+                    href="https://linkedin.com" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="w-8 h-8 flex items-center justify-center border border-border text-primary hover:border-primary transition-all bg-background/50 hover:bg-primary/5"
+                >
+                    <Linkedin className="w-4 h-4 fill-primary" strokeWidth={0} />
                 </a>
             </div>
           </div>
@@ -335,9 +372,14 @@ export function Footer() {
         {/* Bottom Bar */}
         <div className="border-t border-border pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex flex-col md:flex-row items-center gap-4 md:gap-8">
-             <p className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider">
-               © {new Date().getFullYear()} <DecryptedText text="Qene Forms. All Rights Reserved." animateOn="view" speed={50} />
-             </p>
+             <div className="flex flex-col gap-1">
+               <p className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider">
+                 © {new Date().getFullYear()} <DecryptedText text="Qene Forms. All Rights Reserved." animateOn="view" speed={50} />
+               </p>
+               <p className="text-[9px] font-mono text-primary/60 uppercase tracking-widest">
+                 Developed by Pixelbet Studio
+               </p>
+             </div>
              <div className="flex gap-6">
                 {footerLinksData.legal.map(link => (
                     <a 
